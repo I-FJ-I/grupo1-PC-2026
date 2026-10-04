@@ -1,13 +1,17 @@
 package com.example.taskapi.service;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.example.taskapi.dto.TaskStats;
 import com.example.taskapi.exception.ResourceNotFoundException;
 import com.example.taskapi.model.Task;
+import com.example.taskapi.model.TaskPriority;
 import com.example.taskapi.model.TaskStatus;
 import com.example.taskapi.repository.TaskRepository;
-import java.time.LocalDate;
-import java.util.List;
-import org.springframework.stereotype.Service;
+import com.example.taskapi.repository.TaskSpecification;
 
 @Service
 public class TaskService {
@@ -18,8 +22,9 @@ public class TaskService {
     this.taskRepository = taskRepository;
   }
 
-  public List<Task> getAllTasks() {
-    return taskRepository.findAll();
+  public List<Task> searchTasks(
+      TaskStatus status, TaskPriority priority, LocalDate dueDate, String title) {
+    return taskRepository.findAll(TaskSpecification.filterBy(status, priority, dueDate, title));
   }
 
   public Task getTaskById(Long id) {

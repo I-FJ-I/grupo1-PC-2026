@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -22,6 +23,15 @@ public class GlobalExceptionHandler {
   public ResponseEntity<Map<String, String>> handleIllegalArgument(IllegalArgumentException ex) {
     Map<String, String> response = new HashMap<>();
     response.put("error", ex.getMessage());
+    return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+  public ResponseEntity<Map<String, String>> handleTypeMismatch(
+      MethodArgumentTypeMismatchException ex) {
+    Map<String, String> response = new HashMap<>();
+    response.put(
+        "error", "Valor inválido para el parámetro '" + ex.getName() + "': " + ex.getValue());
     return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
   }
 

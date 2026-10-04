@@ -1,21 +1,32 @@
 package com.example.taskapi.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.example.taskapi.exception.ResourceNotFoundException;
 import com.example.taskapi.model.Task;
 import com.example.taskapi.model.TaskPriority;
 import com.example.taskapi.model.TaskStatus;
 import com.example.taskapi.repository.TaskRepository;
-import java.time.LocalDate;
-import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class TaskServiceTest {
@@ -136,5 +147,27 @@ class TaskServiceTest {
     assertEquals(4L, stats.completedTasks());
     assertEquals(6L, stats.pendingTasks());
     assertEquals(2L, stats.overdueTasks());
+
+  }
+  void searchTasks_ShouldDelegueToRepositoryWithSpecification() {
+    List<Task> expected = List.of(validTask);
+    when(taskRepository.findAll(any(Specification.class))).thenReturn(expected);
+
+    List<Task> result =
+        taskService.searchTasks(TaskStatus.PENDING, TaskPriority.HIGH, LocalDate.now(), "Java");
+
+    assertEquals(expected, result);
+    verify(taskRepository, times(1)).findAll(any(Specification.class));
+  }
+
+  @Test
+  void searchTasks_ShouldReturnAll_WhenNoFiltersProvided() {
+    List<Task> expected = List.of(validTask);
+    when(taskRepository.findAll(any(Specification.class))).thenReturn(expected);
+
+    List<Task> result = taskService.searchTasks(null, null, null, null);
+
+    assertEquals(expected, result);
+    verify(taskRepository, times(1)).findAll(any(Specification.class));
   }
 }

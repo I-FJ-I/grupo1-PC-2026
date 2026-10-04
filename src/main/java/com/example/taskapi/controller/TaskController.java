@@ -2,9 +2,13 @@ package com.example.taskapi.controller;
 
 import com.example.taskapi.dto.TaskStats;
 import com.example.taskapi.model.Task;
+import com.example.taskapi.model.TaskPriority;
+import com.example.taskapi.model.TaskStatus;
 import com.example.taskapi.service.TaskService;
 import jakarta.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +24,13 @@ public class TaskController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Task>> getAllTasks() {
-    return ResponseEntity.ok(taskService.getAllTasks());
+  public ResponseEntity<List<Task>> getTasks(
+      @RequestParam(required = false) TaskStatus status,
+      @RequestParam(required = false) TaskPriority priority,
+      @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+          LocalDate dueDate,
+      @RequestParam(required = false) String title) {
+    return ResponseEntity.ok(taskService.searchTasks(status, priority, dueDate, title));
   }
 
   @GetMapping("/stats")
