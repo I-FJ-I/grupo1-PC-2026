@@ -52,5 +52,5 @@ Para cubrir el flujo de GitHub Flow de esta parte, realizamos dos ciclos complet
 
 ![captura del issue](seguimiento/capturas/JH-b2-D(1).png)
 
-![captura del pull request](image.png)
+![captura del pull request](seguimiento/capturas/JH-n2-D(2).png)
 
