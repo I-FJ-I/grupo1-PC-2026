@@ -120,4 +120,21 @@ class TaskServiceTest {
     assertThrows(ResourceNotFoundException.class, () -> taskService.deleteTask(99L));
     verify(taskRepository, never()).delete(any(Task.class));
   }
+
+  @Test
+  void getTaskStatistics_ShouldReturnCorrectCounts() {
+    when(taskRepository.count()).thenReturn(10L);
+    when(taskRepository.countByStatus(TaskStatus.COMPLETED)).thenReturn(4L);
+    when(taskRepository.countByStatus(TaskStatus.PENDING)).thenReturn(3L);
+    when(taskRepository.countByStatus(TaskStatus.IN_PROGRESS)).thenReturn(3L);
+    when(taskRepository.countByDueDateBeforeAndStatusNot(any(), eq(TaskStatus.COMPLETED)))
+        .thenReturn(2L);
+
+    var stats = taskService.getTaskStatistics();
+
+    assertEquals(10L, stats.totalTasks());
+    assertEquals(4L, stats.completedTasks());
+    assertEquals(6L, stats.pendingTasks());
+    assertEquals(2L, stats.overdueTasks());
+  }
 }

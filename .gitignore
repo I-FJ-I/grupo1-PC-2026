@@ -2,3 +2,12 @@ target/
 *.class
 .idea/
 .env
+
+# Eclipse metadata
+.classpath
+.project
+.settings/
+
+# Output directory
+bin/
+target/

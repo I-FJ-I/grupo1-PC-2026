@@ -1,5 +1,6 @@
 package com.example.taskapi.controller;
 
+import com.example.taskapi.dto.TaskStats;
 import com.example.taskapi.model.Task;
 import com.example.taskapi.service.TaskService;
 import jakarta.validation.Valid;
@@ -21,6 +22,11 @@ public class TaskController {
   @GetMapping
   public ResponseEntity<List<Task>> getAllTasks() {
     return ResponseEntity.ok(taskService.getAllTasks());
+  }
+
+  @GetMapping("/stats")
+  public ResponseEntity<TaskStats> getTaskStats() {
+    return ResponseEntity.ok(taskService.getTaskStatistics());
   }
 
   @GetMapping("/{id}")
