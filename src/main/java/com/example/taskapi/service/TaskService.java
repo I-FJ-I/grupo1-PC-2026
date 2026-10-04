@@ -1,7 +1,9 @@
 package com.example.taskapi.service;
 
+import com.example.taskapi.dto.TaskStats;
 import com.example.taskapi.exception.ResourceNotFoundException;
 import com.example.taskapi.model.Task;
+import com.example.taskapi.model.TaskStatus;
 import com.example.taskapi.repository.TaskRepository;
 import java.time.LocalDate;
 import java.util.List;
@@ -57,5 +59,17 @@ public class TaskService {
     if (task.getTitle() != null && task.getTitle().trim().isEmpty()) {
       throw new IllegalArgumentException("El título no puede estar en blanco.");
     }
+  }
+
+  public TaskStats getTaskStatistics() {
+    long total = taskRepository.count();
+    long completed = taskRepository.countByStatus(TaskStatus.COMPLETED);
+    long pending =
+        taskRepository.countByStatus(TaskStatus.PENDING)
+            + taskRepository.countByStatus(TaskStatus.IN_PROGRESS);
+    long overdue =
+        taskRepository.countByDueDateBeforeAndStatusNot(LocalDate.now(), TaskStatus.COMPLETED);
+
+    return new TaskStats(total, completed, pending, overdue);
   }
 }
