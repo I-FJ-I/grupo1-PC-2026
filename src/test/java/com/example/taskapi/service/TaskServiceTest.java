@@ -146,6 +146,29 @@ class TaskServiceTest {
   }
 
   @Test
+  void updateTaskStatus_ShouldChangeOnlyStatus_WhenTaskExists() {
+    when(taskRepository.findById(1L)).thenReturn(Optional.of(validTask));
+    when(taskRepository.save(any(Task.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+    Task updatedTask = taskService.updateTaskStatus(1L, TaskStatus.COMPLETED);
+
+    assertEquals(TaskStatus.COMPLETED, updatedTask.getStatus());
+    assertEquals("Aprender Java 21", updatedTask.getTitle());
+    assertEquals(TaskPriority.HIGH, updatedTask.getPriority());
+    verify(taskRepository, times(1)).save(validTask);
+  }
+
+  @Test
+  void updateTaskStatus_ShouldThrowResourceNotFound_WhenTaskDoesNotExist() {
+    when(taskRepository.findById(99L)).thenReturn(Optional.empty());
+
+    assertThrows(
+        ResourceNotFoundException.class,
+        () -> taskService.updateTaskStatus(99L, TaskStatus.COMPLETED));
+    verify(taskRepository, never()).save(any(Task.class));
+  }
+
+  @Test
   void deleteTask_ShouldCallDelete_WhenTaskExists() {
     when(taskRepository.findById(1L)).thenReturn(Optional.of(validTask));
 
