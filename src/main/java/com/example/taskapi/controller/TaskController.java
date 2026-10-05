@@ -9,6 +9,9 @@ import jakarta.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +26,7 @@ public class TaskController {
     this.taskService = taskService;
   }
 
-  @GetMapping
+  @GetMapping 
   public ResponseEntity<List<Task>> getTasks(
       @RequestParam(required = false) TaskStatus status,
       @RequestParam(required = false) TaskPriority priority,
@@ -36,6 +39,10 @@ public class TaskController {
   @GetMapping("/stats")
   public ResponseEntity<TaskStats> getTaskStats() {
     return ResponseEntity.ok(taskService.getTaskStatistics());
+  }
+
+  public ResponseEntity<Page<Task>> getAllTasks(@PageableDefault(size = 20) Pageable pageable) {
+    return ResponseEntity.ok(taskService.getAllTasks(pageable));
   }
 
   @GetMapping("/{id}")

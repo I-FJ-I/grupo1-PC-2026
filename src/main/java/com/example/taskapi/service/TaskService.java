@@ -3,6 +3,8 @@ package com.example.taskapi.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.taskapi.dto.TaskStats;
@@ -25,6 +27,10 @@ public class TaskService {
   public List<Task> searchTasks(
       TaskStatus status, TaskPriority priority, LocalDate dueDate, String title) {
     return taskRepository.findAll(TaskSpecification.filterBy(status, priority, dueDate, title));
+  }
+  
+  public Page<Task> getAllTasks(Pageable pageable) {
+    return taskRepository.findAll(pageable);
   }
 
   public Task getTaskById(Long id) {

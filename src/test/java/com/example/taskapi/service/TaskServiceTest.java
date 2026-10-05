@@ -27,6 +27,19 @@ import com.example.taskapi.model.Task;
 import com.example.taskapi.model.TaskPriority;
 import com.example.taskapi.model.TaskStatus;
 import com.example.taskapi.repository.TaskRepository;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 @ExtendWith(MockitoExtension.class)
 class TaskServiceTest {
@@ -47,6 +60,24 @@ class TaskServiceTest {
             TaskPriority.HIGH,
             LocalDate.now().plusDays(5));
     validTask.setId(1L);
+  }
+
+  @Test
+  void getAllTasks_ShouldReturnPagedTasks_WhenCalledWithPageable() {
+    Pageable pageable = PageRequest.of(0, 10);
+    List<Task> taskList = List.of(validTask);
+    Page<Task> expectedPage = new PageImpl<>(taskList, pageable, taskList.size());
+
+    when(taskRepository.findAll(any(Pageable.class))).thenReturn(expectedPage);
+
+    Page<Task> result = taskService.getAllTasks(pageable);
+
+    assertNotNull(result);
+    assertEquals(1, result.getTotalElements());
+    assertEquals(1, result.getContent().size());
+    assertEquals("Aprender Java 21", result.getContent().get(0).getTitle());
+
+    verify(taskRepository, times(1)).findAll(pageable);
   }
 
   @Test
