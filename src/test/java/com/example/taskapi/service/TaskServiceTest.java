@@ -1,26 +1,15 @@
 package com.example.taskapi.service;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.jpa.domain.Specification;
 
 import com.example.taskapi.exception.ResourceNotFoundException;
 import com.example.taskapi.model.Task;
@@ -40,6 +29,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 @ExtendWith(MockitoExtension.class)
 class TaskServiceTest {
@@ -201,8 +191,8 @@ class TaskServiceTest {
     assertEquals(4L, stats.completedTasks());
     assertEquals(6L, stats.pendingTasks());
     assertEquals(2L, stats.overdueTasks());
-
   }
+
   void searchTasks_ShouldDelegueToRepositoryWithSpecification() {
     List<Task> expected = List.of(validTask);
     when(taskRepository.findAll(any(Specification.class))).thenReturn(expected);

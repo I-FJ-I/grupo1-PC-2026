@@ -1,12 +1,5 @@
 package com.example.taskapi.service;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
 import com.example.taskapi.dto.TaskStats;
 import com.example.taskapi.exception.ResourceNotFoundException;
 import com.example.taskapi.model.Task;
@@ -14,6 +7,11 @@ import com.example.taskapi.model.TaskPriority;
 import com.example.taskapi.model.TaskStatus;
 import com.example.taskapi.repository.TaskRepository;
 import com.example.taskapi.repository.TaskSpecification;
+import java.time.LocalDate;
+import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 @Service
 public class TaskService {
@@ -28,7 +26,7 @@ public class TaskService {
       TaskStatus status, TaskPriority priority, LocalDate dueDate, String title) {
     return taskRepository.findAll(TaskSpecification.filterBy(status, priority, dueDate, title));
   }
-  
+
   public Page<Task> getAllTasks(Pageable pageable) {
     return taskRepository.findAll(pageable);
   }
