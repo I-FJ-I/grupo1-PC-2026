@@ -1,6 +1,7 @@
 package com.example.taskapi.controller;
 
 import com.example.taskapi.dto.TaskStats;
+import com.example.taskapi.dto.TaskStatusUpdate;
 import com.example.taskapi.model.Task;
 import com.example.taskapi.model.TaskPriority;
 import com.example.taskapi.model.TaskStatus;
@@ -58,6 +59,12 @@ public class TaskController {
   @PutMapping("/{id}")
   public ResponseEntity<Task> updateTask(@PathVariable Long id, @Valid @RequestBody Task task) {
     return ResponseEntity.ok(taskService.updateTask(id, task));
+  }
+
+  @PatchMapping("/{id}/status")
+  public ResponseEntity<Task> updateTaskStatus(
+      @PathVariable Long id, @Valid @RequestBody TaskStatusUpdate statusUpdate) {
+    return ResponseEntity.ok(taskService.updateTaskStatus(id, statusUpdate.status()));
   }
 
   @DeleteMapping("/{id}")
