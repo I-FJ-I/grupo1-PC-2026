@@ -58,6 +58,12 @@ public class TaskService {
     return taskRepository.save(existingTask);
   }
 
+  public Task updateTaskStatus(Long id, TaskStatus status) {
+    Task existingTask = getTaskById(id);
+    existingTask.setStatus(status);
+    return taskRepository.save(existingTask);
+  }
+
   public void deleteTask(Long id) {
     Task task = getTaskById(id);
     taskRepository.delete(task);
