@@ -29,14 +29,14 @@
 
 - **Qué se hizo:** Se modificó el `pom.xml` para incluir el driver de PostgreSQL en ejecución y aislar H2 exclusivamente para los tests unitarios, adaptando el `application.properties` para trabajar con Hibernate y PostgreSQL. Asimismo, se creó el fichero `docker-compose.yml` definiendo dos servicios (`db` con imagen oficial de PostgreSQL 16, volumen persistente y `pg_isready` como healthcheck, y `api` construida a partir del `Dockerfile` con dependencia condicional de salud).
 - **Autor:** Jiahui
-- **Relación con el boletín:** Parte D (De H2 a PostgreSQL con Compose).
+- **Relación con el boletín:** [Parte D (De H2 a PostgreSQL con Compose)](#parte-d--de-h2-a-postgresql-con-compose).
 - **Uso de IA:** Gemini. Para adaptar el proyecto de H2 a PostgreSQL.
 
 ### 4. `refactor(docker): externaliza la configuración a .env y añade plantilla .env.example`
 
 - **Qué se hizo:** Se externalizaron las credenciales y parámetros de la base de datos fuera del `docker-compose.yml` utilizando un fichero local `.env`, complementado con una plantilla versionada `.env.example`. Se protegió el entorno local añadiendo `.env` al `.gitignore` y al `.dockerignore`, y se configuraron sintaxis avanzadas de Docker Compose (`${VAR}`, validación estricta con `:?` y escape de variables `$${VAR}` para los healthchecks).
 - **Autor:** Jiahui
-- **Relación con el boletín:** Parte E (Sacar la configuración a un fichero `.env`).
+- **Relación con el boletín:** [Parte E (Sacar la configuración a un fichero `.env`)](#parte-e--sacar-la-configuración-a-un-fichero-env).
 - **Uso de IA:** No
 
 ## Descripción narrativa de lo hecho en la sesión y relación con los commits
