@@ -1,0 +1,1777 @@
+PS C:\MISUM\PracticasContinuas> cd .\grupo1-PC-2026\
+PS C:\MISUM\PracticasContinuas\grupo1-PC-2026> docker run --rm `
+>>   -v "C:\MISUM\PracticasContinuas\parte-i\logbook:/project" `
+>>   -v logbook-m2:/root/.m2 `
+>>   logbook-tests:1.0
+[INFO] Scanning for projects...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective model for org.zalando:logbook-json-jackson2:jar:4.3.0-SNAPSHOT
+[WARNING] The expression ${artifactId} is deprecated. Please use ${project.artifactId} instead.
+[WARNING]
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING]
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING]
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO]
+[INFO] Logbook                                                            [pom]
+[INFO] logbook-parent                                                     [pom]
+[INFO] logbook-api                                                        [jar]
+[INFO] logbook-common                                                     [jar]
+[INFO] logbook-test                                                       [jar]
+[INFO] logbook-json                                                       [jar]
+[INFO] logbook-core                                                       [jar]
+[INFO] logbook-httpclient                                                 [jar]
+[INFO] logbook-json-jackson2                                              [jar]
+[INFO] logbook-spring                                                     [jar]
+[INFO] logbook-servlet                                                    [jar]
+[INFO] logbook-httpclient5                                                [jar]
+[INFO] logbook-openfeign                                                  [jar]
+[INFO] logbook-spring-boot-autoconfigure                                  [jar]
+[INFO] logbook-logstash                                                   [jar]
+[INFO] logbook-jmh                                                        [jar]
+[INFO] logbook-bom                                                        [pom]
+[INFO] logbook-jaxrs                                                      [jar]
+[INFO] logbook-jdkserver                                                  [jar]
+[INFO] logbook-netty                                                      [jar]
+[INFO] logbook-okhttp                                                     [jar]
+[INFO] logbook-okhttp2                                                    [jar]
+[INFO] logbook-spring-webflux                                             [jar]
+[INFO] logbook-ktor-common                                                [jar]
+[INFO] logbook-ktor-client                                                [jar]
+[INFO] logbook-ktor-server                                                [jar]
+[INFO] logbook-ktor                                                       [jar]
+[INFO] logbook-ktor-parent                                                [pom]
+[INFO] logbook-spring-boot-ecs-autoconfigure                              [jar]
+[INFO] logbook-spring-boot-webflux-autoconfigure                          [jar]
+[INFO] logbook-spring-boot-starter                                        [jar]
+[INFO] logbook-spring-boot-ecs-autoconfigure-log4j2-test                  [jar]
+[INFO] logbook-spring-boot-ecs-autoconfigure-logback-test                 [jar]
+[INFO]
+[INFO] ------------------------< org.zalando:logbook >-------------------------
+[INFO] Building Logbook 4.3.0-SNAPSHOT                                   [1/33]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO]
+[INFO] ---------------------< org.zalando:logbook-parent >---------------------
+[INFO] Building logbook-parent 4.3.0-SNAPSHOT                            [2/33]
+[INFO]   from logbook-parent/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.ReactorModuleConvergence passed
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-parent ---
+[INFO] Ignoring POM project!
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-parent ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-parent/target/jacoco.exec
+[INFO]
+[INFO] ----------------------< org.zalando:logbook-api >-----------------------
+[INFO] Building logbook-api 4.3.0-SNAPSHOT                               [3/33]
+[INFO]   from logbook-api/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-api ---
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-api ---
+[INFO] Checking compile classpath
+[INFO] Checking runtime classpath
+[INFO] Checking test classpath
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-api ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-api/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-api ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-api ---
+[INFO] skip non existing resourceDirectory /project/logbook-api/src/test/resources
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-api ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.attributes.AttributeExtractorTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.16 s -- in org.zalando.logbook.attributes.AttributeExtractorTest
+[INFO] Running org.zalando.logbook.attributes.HttpAttributesTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.374 s -- in org.zalando.logbook.attributes.HttpAttributesTest
+[INFO] Running org.zalando.logbook.attributes.NoOpAttributeExtractorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 s -- in org.zalando.logbook.attributes.NoOpAttributeExtractorTest
+[INFO] Running org.zalando.logbook.BodyFilterMergeTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.252 s -- in org.zalando.logbook.BodyFilterMergeTest
+[INFO] Running org.zalando.logbook.BodyFilterTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in org.zalando.logbook.BodyFilterTest
+[INFO] Running org.zalando.logbook.BodyReplacerTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.345 s -- in org.zalando.logbook.BodyReplacerTest
+[INFO] Running org.zalando.logbook.ContentTypeTest
+[INFO] Tests run: 41, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.734 s -- in org.zalando.logbook.ContentTypeTest
+[INFO] Running org.zalando.logbook.CorrelationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.103 s -- in org.zalando.logbook.CorrelationTest
+[INFO] Running org.zalando.logbook.DefaultHttpHeadersTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.175 s -- in org.zalando.logbook.DefaultHttpHeadersTest
+[INFO] Running org.zalando.logbook.EnforceCoverageTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.796 s -- in org.zalando.logbook.EnforceCoverageTest
+[INFO] Running org.zalando.logbook.FoldTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.zalando.logbook.FoldTest
+[INFO] Running org.zalando.logbook.ForwardingTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.358 s -- in org.zalando.logbook.ForwardingTest
+[INFO] Running org.zalando.logbook.HeaderFilterTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.zalando.logbook.HeaderFilterTest
+[INFO] Running org.zalando.logbook.HttpHeadersApplyTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.066 s -- in org.zalando.logbook.HttpHeadersApplyTest
+[INFO] Running org.zalando.logbook.HttpHeadersImmutabilityTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in org.zalando.logbook.HttpHeadersImmutabilityTest
+[INFO] Running org.zalando.logbook.HttpHeadersTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in org.zalando.logbook.HttpHeadersTest
+[INFO] Running org.zalando.logbook.HttpHeadersUpdateTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.zalando.logbook.HttpHeadersUpdateTest
+[INFO] Running org.zalando.logbook.HttpLogWriterTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.132 s -- in org.zalando.logbook.HttpLogWriterTest
+[INFO] Running org.zalando.logbook.HttpMessageTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in org.zalando.logbook.HttpMessageTest
+[INFO] Running org.zalando.logbook.HttpRequestTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.zalando.logbook.HttpRequestTest
+[INFO] Running org.zalando.logbook.HttpResponseTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.782 s -- in org.zalando.logbook.HttpResponseTest
+[INFO] Running org.zalando.logbook.internal.LogbookTest
+[INFO] Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.472 s -- in org.zalando.logbook.internal.LogbookTest
+[INFO] Running org.zalando.logbook.LogbookFactoryTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.zalando.logbook.LogbookFactoryTest
+[INFO] Running org.zalando.logbook.PathFilterTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.zalando.logbook.PathFilterTest
+[INFO] Running org.zalando.logbook.QueryFilterTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.zalando.logbook.QueryFilterTest
+[INFO] Running org.zalando.logbook.RequestFilterTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.zalando.logbook.RequestFilterTest
+[INFO] Running org.zalando.logbook.RequestURITest
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.210 s -- in org.zalando.logbook.RequestURITest
+[INFO] Running org.zalando.logbook.ResponseFilterTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.zalando.logbook.ResponseFilterTest
+[INFO] Running org.zalando.logbook.SinkTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.071 s -- in org.zalando.logbook.SinkTest
+[INFO] Running org.zalando.logbook.StrategyTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.121 s -- in org.zalando.logbook.StrategyTest
+[INFO] Running org.zalando.logbook.StructuredHttpLogFormatterTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.245 s -- in org.zalando.logbook.StructuredHttpLogFormatterTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 149, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] ---------------------< org.zalando:logbook-common >---------------------
+[INFO] Building logbook-common 4.3.0-SNAPSHOT                            [4/33]
+[INFO]   from logbook-common/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-common ---
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-common ---
+[INFO] Checking compile classpath
+[INFO] Checking runtime classpath
+[INFO] Checking test classpath
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-common ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-common/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-common ---
+[INFO] skip non existing resourceDirectory /project/logbook-common/src/main/resources
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-common ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-common ---
+[INFO] skip non existing resourceDirectory /project/logbook-common/src/test/resources
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-common ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-common ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.common.GlobTest
+[INFO] Tests run: 85, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.194 s -- in org.zalando.logbook.common.GlobTest
+[INFO] Running org.zalando.logbook.common.MediaTypeQueryTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in org.zalando.logbook.common.MediaTypeQueryTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 86, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] ----------------------< org.zalando:logbook-test >----------------------
+[INFO] Building logbook-test 4.3.0-SNAPSHOT                              [5/33]
+[INFO]   from test-modules/logbook-test/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-test ---
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-test ---
+[INFO] Checking compile classpath
+[INFO] Checking runtime classpath
+[INFO] Checking test classpath
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-test ---
+[INFO] Skipping JaCoCo execution because property jacoco.skip is set.
+[INFO] argLine set to empty
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-test ---
+[INFO] skip non existing resourceDirectory /project/test-modules/logbook-test/src/main/resources
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-test ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-test ---
+[INFO] skip non existing resourceDirectory /project/test-modules/logbook-test/src/test/resources
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-test ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-test ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.test.MockHttpRequestTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.679 s -- in org.zalando.logbook.test.MockHttpRequestTest
+[INFO] Running org.zalando.logbook.test.MockHttpResponseTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.074 s -- in org.zalando.logbook.test.MockHttpResponseTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] ----------------------< org.zalando:logbook-json >----------------------
+[INFO] Building logbook-json 4.3.0-SNAPSHOT                              [6/33]
+[INFO]   from logbook-json/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-json ---
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-json ---
+[INFO] Checking compile classpath
+[INFO] Checking runtime classpath
+[INFO] Checking test classpath
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-json ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-json/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-json ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-json ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-json ---
+[INFO] Copying 9 resources from src/test/resources to target/test-classes
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-json ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-json ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.json.CompactingJsonBodyFilterTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.88 s -- in org.zalando.logbook.json.CompactingJsonBodyFilterTest
+[INFO] Running org.zalando.logbook.json.DefaultBodyFilterTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.742 s -- in org.zalando.logbook.json.DefaultBodyFilterTest
+[INFO] Running org.zalando.logbook.json.FastCompactingJsonBodyFilterTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.091 s -- in org.zalando.logbook.json.FastCompactingJsonBodyFilterTest
+[INFO] Running org.zalando.logbook.json.FastJsonHttpLogFormatterTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.123 s -- in org.zalando.logbook.json.FastJsonHttpLogFormatterTest
+[INFO] Running org.zalando.logbook.json.JsonBodyFilterMergeTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.062 s -- in org.zalando.logbook.json.JsonBodyFilterMergeTest
+[INFO] Running org.zalando.logbook.json.JsonBodyFiltersTest
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.691 s -- in org.zalando.logbook.json.JsonBodyFiltersTest
+[INFO] Running org.zalando.logbook.json.JsonFieldBodyFilterTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.879 s -- in org.zalando.logbook.json.JsonFieldBodyFilterTest
+[INFO] Running org.zalando.logbook.json.JsonPathBodyFiltersTest
+21:24:22.807 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:24.006 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missing']
+21:24:24.115 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:24.195 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missing']
+21:24:24.218 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:24:24.369 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:24:24.392 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['nickname']
+21:24:24.396 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['nickname']
+21:24:24.493 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:24:24.496 [main] DEBUG com.jayway.jsonpath.internal.JsonContext -- Delete path $['id']
+21:24:24.498 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:24.499 [main] DEBUG com.jayway.jsonpath.internal.JsonContext -- Delete path $['name']
+21:24:24.501 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:24:24.503 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:24.525 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:24:24.528 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:24:24.610 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']
+21:24:24.612 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']
+21:24:24.638 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']
+21:24:24.639 [main] DEBUG com.jayway.jsonpath.internal.JsonContext -- Delete path $['grades']
+21:24:24.641 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']
+21:24:24.663 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:24.666 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:24.687 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades'][*]
+21:24:24.689 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['Math']
+21:24:24.691 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['English']
+21:24:24.692 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['Science']
+21:24:24.693 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['PE']
+21:24:24.716 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:24.718 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missingBool']
+21:24:24.719 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missingNumber']
+21:24:24.720 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:24.721 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missingBool']
+21:24:24.722 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missingNumber']
+21:24:24.882 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][*]['name']
+21:24:24.904 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][0]['name']
+21:24:24.906 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][1]['name']
+21:24:24.930 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:24.931 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $[0]['thisFieldDoesntExist']
+21:24:24.933 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['nonExistingArray'][0]['thisFieldDoesntExist']
+21:24:24.934 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['address']
+21:24:24.936 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:24.938 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['address']
+21:24:24.963 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:24:24.965 [main] DEBUG com.jayway.jsonpath.internal.JsonContext -- Delete path $['friends']
+21:24:24.966 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:24:24.987 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][*]['name']
+21:24:24.989 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][0]['name']
+21:24:24.991 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][1]['name']
+21:24:25.011 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:25.053 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:25.054 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missing']
+21:24:25.056 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:25.058 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:24:25.207 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missing']
+21:24:25.227 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:24:25.228 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:24:25.252 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:25.254 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:25.301 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:24:25.303 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:24:25.326 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:25.329 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:25.349 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:24:25.352 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:24:25.375 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['English']
+21:24:25.377 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['English']
+21:24:25.401 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:24:25.403 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:24:25.425 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:24:25.427 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:24:25.449 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']['missing']
+21:24:25.451 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:24:25.452 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']['missing']
+[INFO] Tests run: 30, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.241 s -- in org.zalando.logbook.json.JsonPathBodyFiltersTest
+[INFO] Running org.zalando.logbook.json.JsonUtilTest
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.258 s -- in org.zalando.logbook.json.JsonUtilTest
+[INFO] Running org.zalando.logbook.json.PrettyPrintingJsonBodyFilterTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.090 s -- in org.zalando.logbook.json.PrettyPrintingJsonBodyFilterTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 109, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] ----------------------< org.zalando:logbook-core >----------------------
+[INFO] Building logbook-core 4.3.0-SNAPSHOT                              [7/33]
+[INFO]   from logbook-core/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-core ---
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-core ---
+[INFO] Checking compile classpath
+[INFO] Checking runtime classpath
+[INFO] Checking test classpath
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-core ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-core/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-core ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-core ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-core ---
+[INFO] Copying 2 resources from src/test/resources to target/test-classes
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-core ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-core ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.core.AbstractHttpStatusCodeSinkTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 51.86 s -- in org.zalando.logbook.core.AbstractHttpStatusCodeSinkTest
+[INFO] Running org.zalando.logbook.core.attributes.AllAttributesExtractorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.705 s -- in org.zalando.logbook.core.attributes.AllAttributesExtractorTest
+[INFO] Running org.zalando.logbook.core.attributes.CompositeAttributeExtractorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.611 s -- in org.zalando.logbook.core.attributes.CompositeAttributeExtractorTest
+[INFO] Running org.zalando.logbook.core.attributes.JwtAllMatchingClaimsExtractorJackson2Test
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.51 s -- in org.zalando.logbook.core.attributes.JwtAllMatchingClaimsExtractorJackson2Test
+[INFO] Running org.zalando.logbook.core.attributes.JwtClaimsExtractorJackson2Test
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.315 s -- in org.zalando.logbook.core.attributes.JwtClaimsExtractorJackson2Test
+[INFO] Running org.zalando.logbook.core.attributes.JwtFirstMatchingClaimExtractorJackson2Test
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.213 s -- in org.zalando.logbook.core.attributes.JwtFirstMatchingClaimExtractorJackson2Test
+[INFO] Running org.zalando.logbook.core.BodyFiltersTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.492 s -- in org.zalando.logbook.core.BodyFiltersTest
+[INFO] Running org.zalando.logbook.core.BodyOnlyIfStatusAtLeastStrategyTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.991 s -- in org.zalando.logbook.core.BodyOnlyIfStatusAtLeastStrategyTest
+[INFO] Running org.zalando.logbook.core.BodyReplacersTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in org.zalando.logbook.core.BodyReplacersTest
+[INFO] Running org.zalando.logbook.core.CachingHttpRequestTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.073 s -- in org.zalando.logbook.core.CachingHttpRequestTest
+[INFO] Running org.zalando.logbook.core.CachingHttpResponseTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in org.zalando.logbook.core.CachingHttpResponseTest
+[INFO] Running org.zalando.logbook.core.ChunkingSinkTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.623 s -- in org.zalando.logbook.core.ChunkingSinkTest
+[INFO] Running org.zalando.logbook.core.ChunkingSpliteratorTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.242 s -- in org.zalando.logbook.core.ChunkingSpliteratorTest
+[INFO] Running org.zalando.logbook.core.CommonsLogFormatSinkTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.186 s -- in org.zalando.logbook.core.CommonsLogFormatSinkTest
+[INFO] Running org.zalando.logbook.core.CompactingXmlBodyFilterTest
+[Fatal Error] :1:11: The processing instruction target matching "[xX][mM][lL]" is not allowed.
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.701 s -- in org.zalando.logbook.core.CompactingXmlBodyFilterTest
+[INFO] Running org.zalando.logbook.core.CompositeSinkTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.243 s -- in org.zalando.logbook.core.CompositeSinkTest
+[INFO] Running org.zalando.logbook.core.ConditionsTest
+[INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.123 s -- in org.zalando.logbook.core.ConditionsTest
+[INFO] Running org.zalando.logbook.core.CookieHeaderFilterTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.235 s -- in org.zalando.logbook.core.CookieHeaderFilterTest
+[INFO] Running org.zalando.logbook.core.CurlHttpLogFormatterTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.114 s -- in org.zalando.logbook.core.CurlHttpLogFormatterTest
+[INFO] Running org.zalando.logbook.core.DefaultHttpLogFormatterTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in org.zalando.logbook.core.DefaultHttpLogFormatterTest
+[INFO] Running org.zalando.logbook.core.DefaultHttpLogWriterTest
+21:26:32.956 [main] TRACE org.zalando.logbook.Logbook -- foo
+21:26:33.007 [main] TRACE org.zalando.logbook.Logbook -- bar
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.148 s -- in org.zalando.logbook.core.DefaultHttpLogWriterTest
+[INFO] Running org.zalando.logbook.core.DefaultLogbookFactoryTest
+21:26:33.168 [main] TRACE org.zalando.logbook.Logbook -- Incoming Request: 8fa8ec5fdd2d0907
+Remote: 127.0.0.1
+GET http://localhost/ HTTP/1.1
+21:26:33.170 [main] TRACE org.zalando.logbook.Logbook -- Outgoing Response: 8fa8ec5fdd2d0907
+Duration: 2 ms
+HTTP/1.1 200 OK
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.161 s -- in org.zalando.logbook.core.DefaultLogbookFactoryTest
+[INFO] Running org.zalando.logbook.core.DefaultLogbookTest
+21:26:34.100 [main] WARN org.zalando.logbook.core.DefaultLogbook -- Unable to log request. Will skip the request & response logging step.
+java.lang.RuntimeException: Writing request went wrong
+        at org.zalando.logbook.Strategy.write(Strategy.java:69)
+        at org.zalando.logbook.core.DefaultLogbook$DefaultRequestWritingStage.write(DefaultLogbook.java:144)
+        at org.zalando.logbook.core.DefaultLogbookTest.shouldNotThrowWhenRequestWritingFailsWithRuntimeException(DefaultLogbookTest.java:188)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+        at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:700)
+        at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:528)
+        at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:53)
+        at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:124)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:256)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:228)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:189)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:109)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:168)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:137)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:126)
+        at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:71)
+        at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:66)
+        at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+        at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:65)
+        at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:71)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+        at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125)
+        at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68)
+        at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:283)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:253)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:221)
+        at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:394)
+        at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:181)
+        at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:530)
+        at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:518)
+21:26:35.075 [main] WARN org.zalando.logbook.core.DefaultLogbook -- Unable to log response. Will skip the response logging step.
+java.lang.RuntimeException: Writing response went wrong
+        at org.zalando.logbook.Strategy.write(Strategy.java:119)
+        at org.zalando.logbook.core.DefaultLogbook$DefaultRequestWritingStage.lambda$process$0(DefaultLogbook.java:162)
+        at org.zalando.logbook.core.DefaultLogbookTest.lambda$shouldNotThrowWhenResponseWritingFailsWithRuntimeException$3(DefaultLogbookTest.java:204)
+        at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:66)
+        at org.assertj.core.api.AssertionsForClassTypes.catchThrowable(AssertionsForClassTypes.java:908)
+        at org.assertj.core.api.AssertionsForClassTypes.assertThatCode(AssertionsForClassTypes.java:879)
+        at org.assertj.core.api.Assertions.assertThatCode(Assertions.java:1396)
+        at org.zalando.logbook.core.DefaultLogbookTest.shouldNotThrowWhenResponseWritingFailsWithRuntimeException(DefaultLogbookTest.java:203)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+        at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:700)
+        at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:528)
+        at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:53)
+        at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:124)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:256)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:228)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:189)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:109)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:168)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:137)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:126)
+        at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:71)
+        at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:66)
+        at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+        at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:65)
+        at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:71)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+        at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125)
+        at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68)
+        at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:283)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:253)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:221)
+        at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:394)
+        at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:181)
+        at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:530)
+        at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:518)
+21:26:35.326 [main] WARN org.zalando.logbook.core.DefaultLogbook -- Unable to prepare request for logging. Will skip the request & response logging step.
+java.lang.RuntimeException: Filtering failed
+        at org.zalando.logbook.core.FilteredHttpRequest.<init>(FilteredHttpRequest.java:39)
+        at org.zalando.logbook.core.DefaultLogbookFactory.lambda$combine$2(DefaultLogbookFactory.java:79)
+        at org.zalando.logbook.RequestFilter.lambda$merge$1(RequestFilter.java:19)
+        at org.zalando.logbook.core.DefaultLogbook.process(DefaultLogbook.java:56)
+        at org.zalando.logbook.core.DefaultLogbook.process(DefaultLogbook.java:44)
+        at org.zalando.logbook.core.DefaultLogbookTest.shouldNotThrowWhenRequestFilterThrowsWhilePreparingRequestWritingStage(DefaultLogbookTest.java:172)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+        at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:700)
+        at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:528)
+        at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:53)
+        at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:124)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:256)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:228)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:189)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:109)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:168)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:137)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:126)
+        at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:71)
+        at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:66)
+        at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+        at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:65)
+        at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:71)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+        at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125)
+        at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68)
+        at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:283)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:253)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:221)
+        at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:394)
+        at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:181)
+        at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:530)
+        at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:518)
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.161 s -- in org.zalando.logbook.core.DefaultLogbookTest
+[INFO] Running org.zalando.logbook.core.DefaultPathFilterTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.091 s -- in org.zalando.logbook.core.DefaultPathFilterTest
+[INFO] Running org.zalando.logbook.core.DefaultSinkTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in org.zalando.logbook.core.DefaultSinkTest
+[INFO] Running org.zalando.logbook.core.DynamicPathFilterTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.071 s -- in org.zalando.logbook.core.DynamicPathFilterTest
+[INFO] Running org.zalando.logbook.core.ExtendedLogFormatSinkTest
+21:26:35.631 [main] TRACE org.zalando.logbook.Logbook -- #Version: 1.0
+21:26:35.717 [main] TRACE org.zalando.logbook.Logbook -- #Date: 2026-10-19
+21:26:35.718 [main] TRACE org.zalando.logbook.Logbook -- #Fields: [date, time, c-ip, s-dns, cs-method, cs-uri-stem, cs-uri-query, sc-status, sc-bytes, cs-bytes, time-taken, cs-protocol, cs(User-Agent), cs(Cookie), cs(Referrer)]
+21:26:35.727 [main] TRACE org.zalando.logbook.Logbook -- #Version: 1.0
+21:26:35.728 [main] TRACE org.zalando.logbook.Logbook -- #Date: 2026-10-19
+21:26:35.729 [main] TRACE org.zalando.logbook.Logbook -- #Fields: [cs(Header-One), cs(Header-Two)]
+21:26:35.735 [main] TRACE org.zalando.logbook.Logbook -- #Version: 1.0
+21:26:35.736 [main] TRACE org.zalando.logbook.Logbook -- #Date: 2026-10-19
+21:26:35.736 [main] TRACE org.zalando.logbook.Logbook -- #Fields: [date, time, c-ip, s-dns, cs-method, cs-uri-stem, cs-uri-query, sc-status, sc-bytes, cs-bytes, time-taken, cs-protocol, cs(User-Agent), cs(Cookie), cs(Referrer)]
+21:26:35.741 [main] TRACE org.zalando.logbook.Logbook -- #Version: 1.0
+21:26:35.742 [main] TRACE org.zalando.logbook.Logbook -- #Date: 2026-10-19
+21:26:35.743 [main] TRACE org.zalando.logbook.Logbook -- #Fields: [date, time, c-ip, s-dns, cs-method, cs-uri-stem, cs-uri-query, sc-status, sc-bytes, cs-bytes, time-taken, cs-protocol, cs(User-Agent), cs(Cookie), cs(Referrer)]
+21:26:35.747 [main] TRACE org.zalando.logbook.Logbook -- #Version: 1.0
+21:26:35.748 [main] TRACE org.zalando.logbook.Logbook -- #Date: 2026-10-19
+21:26:35.748 [main] TRACE org.zalando.logbook.Logbook -- #Fields: [date, time, c-ip, s-dns, cs-method, cs-uri-stem, cs-uri-query, sc-status, sc-bytes, cs-bytes, time-taken, cs-protocol, cs(User-Agent), cs(Cookie), cs(Referrer)]
+21:26:35.753 [main] TRACE org.zalando.logbook.Logbook -- #Version: 1.0
+21:26:35.754 [main] TRACE org.zalando.logbook.Logbook -- #Date: 2026-10-19
+21:26:35.755 [main] TRACE org.zalando.logbook.Logbook -- #Fields: [date, time, c-ip, s-dns, cs-method, cs-uri-stem, cs-uri-query, sc-status, sc-bytes, cs-bytes, time-taken, cs-protocol, cs(User-Agent), cs(Cookie), cs(Referrer)]
+21:26:35.760 [main] TRACE org.zalando.logbook.Logbook -- #Version: 1.0
+21:26:35.760 [main] TRACE org.zalando.logbook.Logbook -- #Date: 2026-10-19
+21:26:35.761 [main] TRACE org.zalando.logbook.Logbook -- #Fields: [date, time, sc(), sc(, cs(), abc(), )]
+21:26:35.766 [main] TRACE org.zalando.logbook.Logbook -- #Version: 1.0
+21:26:35.767 [main] TRACE org.zalando.logbook.Logbook -- #Date: 2026-10-19
+21:26:35.768 [main] TRACE org.zalando.logbook.Logbook -- #Fields: [date, time, c-ip, s-dns, cs-method, cs-uri-stem, cs-uri-query, sc-status, sc-bytes, cs-bytes, time-taken, cs-protocol, cs(User-Agent), cs(Cookie), cs(Referrer)]
+21:26:35.775 [main] TRACE org.zalando.logbook.Logbook -- #Version: 1.0
+21:26:35.776 [main] TRACE org.zalando.logbook.Logbook -- #Date: 2026-10-19
+21:26:35.777 [main] TRACE org.zalando.logbook.Logbook -- #Fields: [sc(Header-One), sc(Header-Two)]
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.257 s -- in org.zalando.logbook.core.ExtendedLogFormatSinkTest
+[INFO] Running org.zalando.logbook.core.FilteredHttpRequestTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 s -- in org.zalando.logbook.core.FilteredHttpRequestTest
+[INFO] Running org.zalando.logbook.core.FilteredHttpResponseTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in org.zalando.logbook.core.FilteredHttpResponseTest
+[INFO] Running org.zalando.logbook.core.HeaderFiltersTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.151 s -- in org.zalando.logbook.core.HeaderFiltersTest
+[INFO] Running org.zalando.logbook.core.HttpStatusCodeBasedSinkTest
+[INFO] Running org.zalando.logbook.core.HttpStatusCodeBasedSinkTest$WritingTests
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.244 s -- in org.zalando.logbook.core.HttpStatusCodeBasedSinkTest$WritingTests
+[INFO] Running org.zalando.logbook.core.HttpStatusCodeBasedSinkTest$ActivationTests
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.096 s -- in org.zalando.logbook.core.HttpStatusCodeBasedSinkTest$ActivationTests
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.198 s -- in org.zalando.logbook.core.HttpStatusCodeBasedSinkTest
+[INFO] Running org.zalando.logbook.core.LevelBasedHttpLogWriterTest
+21:26:38.591 [main] WARN org.zalando.logbook.Logbook -- bar
+21:26:38.594 [main] WARN org.zalando.logbook.Logbook -- foo
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.157 s -- in org.zalando.logbook.core.LevelBasedHttpLogWriterTest
+[INFO] Running org.zalando.logbook.core.QueryFiltersTest
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.357 s -- in org.zalando.logbook.core.QueryFiltersTest
+[INFO] Running org.zalando.logbook.core.RequestFiltersTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.187 s -- in org.zalando.logbook.core.RequestFiltersTest
+[INFO] Running org.zalando.logbook.core.ResponseFiltersTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.109 s -- in org.zalando.logbook.core.ResponseFiltersTest
+[INFO] Running org.zalando.logbook.core.SecurityStrategyTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.534 s -- in org.zalando.logbook.core.SecurityStrategyTest
+[INFO] Running org.zalando.logbook.core.SimplePrecorrelationTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s -- in org.zalando.logbook.core.SimplePrecorrelationTest
+[INFO] Running org.zalando.logbook.core.SplunkHttpLogFormatterTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.121 s -- in org.zalando.logbook.core.SplunkHttpLogFormatterTest
+[INFO] Running org.zalando.logbook.core.StatusAtLeastStrategyTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.386 s -- in org.zalando.logbook.core.StatusAtLeastStrategyTest
+[INFO] Running org.zalando.logbook.core.StatusCodeBasedSinkTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.070 s -- in org.zalando.logbook.core.StatusCodeBasedSinkTest
+[INFO] Running org.zalando.logbook.core.StreamHttpLogWriterTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.207 s -- in org.zalando.logbook.core.StreamHttpLogWriterTest
+[INFO] Running org.zalando.logbook.core.WithoutBodyStrategyTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.327 s -- in org.zalando.logbook.core.WithoutBodyStrategyTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 369, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] -------------------< org.zalando:logbook-httpclient >-------------------
+[INFO] Building logbook-httpclient 4.3.0-SNAPSHOT                        [8/33]
+[INFO]   from logbook-httpclient/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-httpclient ---
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-httpclient ---
+[INFO] Checking compile classpath
+[INFO] Checking runtime classpath
+[INFO] Checking test classpath
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-httpclient ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-httpclient/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-httpclient ---
+[INFO] skip non existing resourceDirectory /project/logbook-httpclient/src/main/resources
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-httpclient ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-httpclient ---
+[INFO] skip non existing resourceDirectory /project/logbook-httpclient/src/test/resources
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-httpclient ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-httpclient ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.httpclient.ForwardingHttpAsyncResponseConsumerTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 52.44 s -- in org.zalando.logbook.httpclient.ForwardingHttpAsyncResponseConsumerTest
+[INFO] Running org.zalando.logbook.httpclient.LocalRequestTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.554 s -- in org.zalando.logbook.httpclient.LocalRequestTest
+[INFO] Running org.zalando.logbook.httpclient.LogbookHttpAsyncClientContextTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 80.20 s -- in org.zalando.logbook.httpclient.LogbookHttpAsyncClientContextTest
+[INFO] Running org.zalando.logbook.httpclient.LogbookHttpAsyncResponseConsumerTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.391 s -- in org.zalando.logbook.httpclient.LogbookHttpAsyncResponseConsumerTest
+[INFO] Running org.zalando.logbook.httpclient.LogbookHttpInterceptorsGzipTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.15 s -- in org.zalando.logbook.httpclient.LogbookHttpInterceptorsGzipTest
+[INFO] Running org.zalando.logbook.httpclient.LogbookHttpInterceptorsPutTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.116 s -- in org.zalando.logbook.httpclient.LogbookHttpInterceptorsPutTest
+[INFO] Running org.zalando.logbook.httpclient.LogbookHttpInterceptorsTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.269 s -- in org.zalando.logbook.httpclient.LogbookHttpInterceptorsTest
+[INFO] Running org.zalando.logbook.httpclient.RemoteResponseTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in org.zalando.logbook.httpclient.RemoteResponseTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 73, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] -----------------< org.zalando:logbook-json-jackson2 >------------------
+[INFO] Building logbook-json-jackson2 4.3.0-SNAPSHOT                     [9/33]
+[INFO]   from logbook-json-jackson2/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-json-jackson2 ---
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-json-jackson2 ---
+[INFO] Checking compile classpath
+[INFO] Checking runtime classpath
+[INFO] Checking test classpath
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-json-jackson2 ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-json-jackson2/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-json-jackson2 ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-json-jackson2 ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-json-jackson2 ---
+[INFO] Copying 6 resources from src/test/resources to target/test-classes
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-json-jackson2 ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-json-jackson2 ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.json.FastCompactingJsonBodyFilterJackson2Test
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.488 s -- in org.zalando.logbook.json.FastCompactingJsonBodyFilterJackson2Test
+[INFO] Running org.zalando.logbook.json.FastJsonHttpLogFormatterJackson2Test
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.773 s -- in org.zalando.logbook.json.FastJsonHttpLogFormatterJackson2Test
+[INFO] Running org.zalando.logbook.json.JsonFieldBodyFilterJackson2Test
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.225 s -- in org.zalando.logbook.json.JsonFieldBodyFilterJackson2Test
+[INFO] Running org.zalando.logbook.json.JsonHttpLogFormatterJackson2Test
+21:30:58.908 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:30:59.236 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:30:59.251 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:30:59.255 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:30:59.399 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']
+21:30:59.406 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']
+21:30:59.564 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['name']
+21:30:59.571 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['name']
+21:30:59.585 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:30:59.590 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:30:59.596 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:30:59.599 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:30:59.626 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:30:59.633 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.046 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['attributes']
+21:31:00.457 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['attributes']
+21:31:00.488 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.505 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.521 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.529 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.540 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.547 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.559 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.566 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.578 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.589 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.616 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.625 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.638 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.646 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.674 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['name']
+21:31:00.682 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['name']
+21:31:00.712 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']
+21:31:00.720 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']
+21:31:00.732 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.738 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.749 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['name']
+21:31:00.758 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['name']
+21:31:00.769 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.778 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.792 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.798 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.809 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:31:00.811 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['type']
+21:31:00.812 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['correlation']
+21:31:00.813 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['protocol']
+21:31:00.815 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['remote']
+21:31:00.816 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['method']
+21:31:00.817 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.818 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.826 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:31:00.828 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['type']
+21:31:00.829 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['correlation']
+21:31:00.830 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['protocol']
+21:31:00.832 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['remote']
+21:31:00.833 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['method']
+21:31:00.834 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.835 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.860 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']['X-Nordic-Text']
+21:31:00.876 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']['X-Nordic-Text']
+21:31:00.895 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']['X-Empty-Header']
+21:31:00.911 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']['X-Empty-Header']
+21:31:00.924 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.931 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:00.943 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.949 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:00.981 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['name']
+21:31:00.983 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['float_value']
+21:31:00.988 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['name']
+21:31:00.990 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['float_value']
+21:31:01.013 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['name']
+21:31:01.020 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']['name']
+21:31:01.039 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:31:01.040 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['type']
+21:31:01.041 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['correlation']
+21:31:01.042 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['protocol']
+21:31:01.042 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['status']
+21:31:01.043 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']
+21:31:01.044 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:01.046 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['duration']
+21:31:01.063 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:31:01.064 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['type']
+21:31:01.065 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['correlation']
+21:31:01.066 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['protocol']
+21:31:01.067 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['status']
+21:31:01.068 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']
+21:31:01.069 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:01.070 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['duration']
+21:31:01.089 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:31:01.090 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['type']
+21:31:01.092 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['correlation']
+21:31:01.092 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['protocol']
+21:31:01.093 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['remote']
+21:31:01.094 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['method']
+21:31:01.095 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:01.096 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']['Accept']
+21:31:01.097 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']['Date']
+21:31:01.097 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+21:31:01.113 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['origin']
+21:31:01.114 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['type']
+21:31:01.115 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['correlation']
+21:31:01.116 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['protocol']
+21:31:01.117 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['remote']
+21:31:01.118 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['method']
+21:31:01.119 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['uri']
+21:31:01.120 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']['Accept']
+21:31:01.122 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['headers']['Date']
+21:31:01.122 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['body']
+[INFO] Tests run: 69, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.144 s -- in org.zalando.logbook.json.JsonHttpLogFormatterJackson2Test
+[INFO] Running org.zalando.logbook.json.JsonPathBodyFiltersJackson2Test
+21:31:02.077 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:02.251 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missing']
+21:31:02.254 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:02.255 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missing']
+21:31:02.277 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:31:02.411 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:31:02.433 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['nickname']
+21:31:02.435 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['nickname']
+21:31:02.529 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:31:02.530 [main] DEBUG com.jayway.jsonpath.internal.JsonContext -- Delete path $['id']
+21:31:02.530 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:02.531 [main] DEBUG com.jayway.jsonpath.internal.JsonContext -- Delete path $['name']
+21:31:02.533 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:31:02.533 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:02.553 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:31:02.555 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:31:02.845 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']
+21:31:02.848 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']
+21:31:02.869 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']
+21:31:02.870 [main] DEBUG com.jayway.jsonpath.internal.JsonContext -- Delete path $['grades']
+21:31:02.888 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']
+21:31:02.908 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:02.910 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:02.931 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades'][*]
+21:31:02.933 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['Math']
+21:31:02.934 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['English']
+21:31:02.935 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['Science']
+21:31:02.936 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['PE']
+21:31:02.958 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:02.960 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missingBool']
+21:31:02.960 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missingNumber']
+21:31:02.962 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:02.963 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missingBool']
+21:31:02.963 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missingNumber']
+21:31:03.363 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][*]['name']
+21:31:03.381 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][0]['name']
+21:31:03.383 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][1]['name']
+21:31:03.403 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:03.404 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $[0]['thisFieldDoesntExist']
+21:31:03.405 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['nonExistingArray'][0]['thisFieldDoesntExist']
+21:31:03.406 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['address']
+21:31:03.408 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:03.409 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['address']
+21:31:03.430 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:31:03.431 [main] DEBUG com.jayway.jsonpath.internal.JsonContext -- Delete path $['friends']
+21:31:03.432 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:31:03.451 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][*]['name']
+21:31:03.453 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][0]['name']
+21:31:03.455 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends'][1]['name']
+21:31:03.478 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:03.519 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:03.521 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missing']
+21:31:03.523 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:03.524 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:31:03.525 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['missing']
+21:31:03.544 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:31:03.547 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:31:03.566 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:03.568 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:03.599 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:31:03.601 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:31:03.621 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:03.623 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:03.644 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:31:03.646 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']
+21:31:03.667 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['English']
+21:31:03.670 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['grades']['English']
+21:31:03.690 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:31:03.692 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:31:03.714 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:31:03.716 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['id']
+21:31:03.737 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']['missing']
+21:31:03.739 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['name']
+21:31:03.740 [main] DEBUG com.jayway.jsonpath.internal.path.CompiledPath -- Evaluating path: $['friends']['missing']
+[INFO] Tests run: 30, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.601 s -- in org.zalando.logbook.json.JsonPathBodyFiltersJackson2Test
+[INFO] Running org.zalando.logbook.json.JsonUtilJackson2Test
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.131 s -- in org.zalando.logbook.json.JsonUtilJackson2Test
+[INFO] Running org.zalando.logbook.json.PrettyPrintingJsonBodyFilterJackson2Test
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.059 s -- in org.zalando.logbook.json.PrettyPrintingJsonBodyFilterJackson2Test
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 143, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] ---------------------< org.zalando:logbook-spring >---------------------
+[INFO] Building logbook-spring 4.3.0-SNAPSHOT                           [10/33]
+[INFO]   from logbook-spring/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-spring ---
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-spring ---
+[INFO] Checking compile classpath
+[INFO] Checking runtime classpath
+[INFO] Checking test classpath
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-spring ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-spring/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-spring ---
+[INFO] skip non existing resourceDirectory /project/logbook-spring/src/main/resources
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-spring ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-spring ---
+[INFO] skip non existing resourceDirectory /project/logbook-spring/src/test/resources
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-spring ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-spring ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.spring.BufferingClientHttpResponseWrapperTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 55.63 s -- in org.zalando.logbook.spring.BufferingClientHttpResponseWrapperTest
+[INFO] Running org.zalando.logbook.spring.LocalRequestTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.049 s -- in org.zalando.logbook.spring.LocalRequestTest
+[INFO] Running org.zalando.logbook.spring.LogbookClientHttpRequestInterceptorTest
+21:33:40.286 [main] DEBUG org.springframework.web.client.RestTemplate -- HTTP GET http://localhost:38593/test/get/withcontent
+21:33:40.905 [main] DEBUG io.micrometer.common.util.internal.logging.InternalLoggerFactory -- Using SLF4J as the default logging framework
+21:33:40.993 [main] DEBUG org.springframework.web.client.RestTemplate -- Accept=[text/plain, */*]
+21:33:42.329 [main] WARN org.zalando.logbook.spring.LogbookClientHttpRequestInterceptor -- Unable to log request. Will skip the request & response logging step.
+java.io.IOException: Writing request went wrong
+        at org.zalando.logbook.core.DefaultSink.write(DefaultSink.java:27)
+        at org.zalando.logbook.test.TestStrategy.write(TestStrategy.java:38)
+        at org.zalando.logbook.core.DefaultLogbook$DefaultRequestWritingStage.write(DefaultLogbook.java:144)
+        at org.zalando.logbook.spring.LogbookClientHttpRequestInterceptor.logRequest(LogbookClientHttpRequestInterceptor.java:36)
+        at org.zalando.logbook.spring.LogbookClientHttpRequestInterceptor.intercept(LogbookClientHttpRequestInterceptor.java:24)
+        at org.springframework.http.client.ClientHttpRequestInterceptor.lambda$apply$0(ClientHttpRequestInterceptor.java:89)
+        at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:73)
+        at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:50)
+        at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:80)
+        at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:754)
+        at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:677)
+        at org.springframework.web.client.RestTemplate.getForObject(RestTemplate.java:304)
+        at org.zalando.logbook.spring.LogbookClientHttpRequestInterceptorTest.shouldNotInterruptRequestProcessingWhenLoggingFails(LogbookClientHttpRequestInterceptorTest.java:144)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+        at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:700)
+        at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:528)
+        at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:53)
+        at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:124)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:256)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:228)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:189)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:109)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:168)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:137)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:126)
+        at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:71)
+        at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:66)
+        at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+        at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:65)
+        at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:71)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+        at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125)
+        at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68)
+        at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:283)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:253)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:221)
+        at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:394)
+        at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:181)
+        at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:530)
+        at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:518)
+21:33:54.570 [main] WARN org.zalando.logbook.spring.LogbookClientHttpRequestInterceptor -- Unable to log response: ResponseProcessingStage is null. Will skip the response logging step.
+21:33:54.587 [main] DEBUG org.springframework.web.client.RestTemplate -- Response 200 OK
+21:33:54.778 [main] DEBUG org.springframework.web.client.RestTemplate -- Reading to [java.lang.String] as "application/octet-stream"
+21:33:56.271 [main] DEBUG org.springframework.web.client.RestTemplate -- HTTP GET http://localhost:39667/test/get/withcontent
+21:33:56.275 [main] DEBUG org.springframework.web.client.RestTemplate -- Accept=[text/plain, */*]
+21:33:57.121 [main] DEBUG org.springframework.web.client.RestTemplate -- Response 200 OK
+21:33:57.123 [main] DEBUG org.springframework.web.client.RestTemplate -- Reading to [java.lang.String] as "application/octet-stream"
+21:33:58.028 [main] DEBUG org.springframework.web.client.RestTemplate -- HTTP POST http://localhost:39383/test/post/withcontent
+21:33:58.032 [main] DEBUG org.springframework.web.client.RestTemplate -- Accept=[text/plain, */*]
+21:33:58.066 [main] DEBUG org.springframework.web.client.RestTemplate -- Writing [request] with org.springframework.http.converter.StringHttpMessageConverter
+21:33:58.117 [main] DEBUG org.springframework.web.client.RestTemplate -- Response 400 BAD_REQUEST
+21:33:59.455 [main] DEBUG org.springframework.web.client.RestTemplate -- HTTP GET http://localhost:38545/test/get/withoutcontent
+21:33:59.456 [main] DEBUG org.springframework.web.client.RestTemplate -- Accept=[]
+21:33:59.523 [main] DEBUG org.springframework.web.client.RestTemplate -- Response 200 OK
+21:34:00.122 [main] DEBUG org.springframework.web.client.RestTemplate -- HTTP GET http://localhost:33805/test/get/withcontent
+21:34:00.124 [main] DEBUG org.springframework.web.client.RestTemplate -- Accept=[text/plain, */*]
+21:34:00.137 [main] DEBUG org.springframework.web.client.RestTemplate -- Response 200 OK
+21:34:00.138 [main] DEBUG org.springframework.web.client.RestTemplate -- Reading to [java.lang.String] as "application/octet-stream"
+21:34:00.813 [main] DEBUG org.springframework.web.client.RestTemplate -- HTTP GET http://localhost:41373/test/get/withcontent
+21:34:00.815 [main] DEBUG org.springframework.web.client.RestTemplate -- Accept=[text/plain, */*]
+21:34:00.830 [main] WARN org.zalando.logbook.spring.LogbookClientHttpRequestInterceptor -- Unable to log response. Will skip the response logging step.
+java.io.IOException: Writing response went wrong
+        at org.zalando.logbook.core.DefaultSink.write(DefaultSink.java:33)
+        at org.zalando.logbook.test.TestStrategy.write(TestStrategy.java:69)
+        at org.zalando.logbook.core.DefaultLogbook$DefaultRequestWritingStage.lambda$process$0(DefaultLogbook.java:162)
+        at org.zalando.logbook.spring.LogbookClientHttpRequestInterceptor.logResponse(LogbookClientHttpRequestInterceptor.java:47)
+        at org.zalando.logbook.spring.LogbookClientHttpRequestInterceptor.intercept(LogbookClientHttpRequestInterceptor.java:26)
+        at org.springframework.http.client.ClientHttpRequestInterceptor.lambda$apply$0(ClientHttpRequestInterceptor.java:89)
+        at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:73)
+        at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:50)
+        at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:80)
+        at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:754)
+        at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:677)
+        at org.springframework.web.client.RestTemplate.getForObject(RestTemplate.java:304)
+        at org.zalando.logbook.spring.LogbookClientHttpRequestInterceptorTest.shouldNotInterruptResponseProcessingWhenLoggingFails(LogbookClientHttpRequestInterceptorTest.java:157)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+        at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:700)
+        at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:528)
+        at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:53)
+        at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148)
+        at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:124)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47)
+        at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98)
+        at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:256)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:228)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:189)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:109)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:168)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:137)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:126)
+        at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:71)
+        at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:66)
+        at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+        at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:65)
+        at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:71)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+        at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125)
+        at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68)
+        at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:283)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:253)
+        at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:221)
+        at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:394)
+        at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:181)
+        at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:530)
+        at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:518)
+21:34:00.832 [main] DEBUG org.springframework.web.client.RestTemplate -- Response 200 OK
+21:34:00.834 [main] DEBUG org.springframework.web.client.RestTemplate -- Reading to [java.lang.String] as "application/octet-stream"
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 81.02 s -- in org.zalando.logbook.spring.LogbookClientHttpRequestInterceptorTest
+[INFO] Running org.zalando.logbook.spring.RemoteResponseTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.103 s -- in org.zalando.logbook.spring.RemoteResponseTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --------------------< org.zalando:logbook-servlet >---------------------
+[INFO] Building logbook-servlet 4.3.0-SNAPSHOT                          [11/33]
+[INFO]   from logbook-servlet/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-servlet ---
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-servlet ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-servlet/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-servlet ---
+[INFO] skip non existing resourceDirectory /project/logbook-servlet/src/main/resources
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-servlet ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-servlet ---
+[INFO] skip non existing resourceDirectory /project/logbook-servlet/src/test/resources
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-servlet ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-servlet ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.servlet.AsyncDispatchTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-10-19T21:35:33.523Z  INFO 1669 --- [           main] o.z.logbook.servlet.AsyncDispatchTest    : Starting AsyncDispatchTest using Java 17.0.20.1 with PID 1669 (started by root in /project/logbook-servlet)
+2026-10-19T21:35:33.605Z  INFO 1669 --- [           main] o.z.logbook.servlet.AsyncDispatchTest    : No active profile set, falling back to 1 default profile: "default"
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2026-10-19T21:36:31.547Z  INFO 1669 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-10-19T21:36:32.055Z  INFO 1669 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-19T21:36:32.060Z  INFO 1669 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-19T21:36:33.234Z  INFO 1669 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 58638 ms
+2026-10-19T21:36:46.197Z  INFO 1669 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-10-19T21:36:46.233Z  INFO 1669 --- [           main] o.z.logbook.servlet.AsyncDispatchTest    : Started AsyncDispatchTest in 93.198 seconds (process running for 153.342)
+2026-10-19T21:36:52.565Z  INFO 1669 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-19T21:36:52.567Z  INFO 1669 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-19T21:36:52.570Z  INFO 1669 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 144.6 s -- in org.zalando.logbook.servlet.AsyncDispatchTest
+[INFO] Running org.zalando.logbook.servlet.ByteStreamsTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.zalando.logbook.servlet.ByteStreamsTest
+[INFO] Running org.zalando.logbook.servlet.FormattingTest
+2026-10-19T21:37:08.577Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:08.580Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:08.584Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-10-19T21:37:21.362Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:21.365Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:21.367Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-19T21:37:21.640Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:21.642Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:21.643Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:21.874Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:21.876Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:21.877Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:22.007Z  WARN 1669 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2026-10-19T21:37:22.203Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:22.203Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:22.204Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:22.213Z  WARN 1669 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2026-10-19T21:37:22.488Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:22.489Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:22.490Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.21 s -- in org.zalando.logbook.servlet.FormattingTest
+[INFO] Running org.zalando.logbook.servlet.FormRequestModeTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.371 s -- in org.zalando.logbook.servlet.FormRequestModeTest
+[INFO] Running org.zalando.logbook.servlet.FormRequestTest
+2026-10-19T21:37:25.034Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:25.035Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:25.036Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:25.210Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:25.210Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:25.211Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:25.365Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:25.366Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:25.367Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:25.520Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:25.520Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:25.521Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.653 s -- in org.zalando.logbook.servlet.FormRequestTest
+[INFO] Running org.zalando.logbook.servlet.HttpSupportTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.647 s -- in org.zalando.logbook.servlet.HttpSupportTest
+[INFO] Running org.zalando.logbook.servlet.LocalResponseTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.244 s -- in org.zalando.logbook.servlet.LocalResponseTest
+[INFO] Running org.zalando.logbook.servlet.LogbookAsyncListenerTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.121 s -- in org.zalando.logbook.servlet.LogbookAsyncListenerTest
+[INFO] Running org.zalando.logbook.servlet.LogbookFilterTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.663 s -- in org.zalando.logbook.servlet.LogbookFilterTest
+[INFO] Running org.zalando.logbook.servlet.MultiFilterSecurityTest
+2026-10-19T21:37:28.597Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:28.598Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:28.599Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-19T21:37:29.018Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:29.019Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:29.020Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-19T21:37:29.169Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:29.170Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:29.170Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:29.318Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:29.319Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:29.320Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-19T21:37:29.468Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:29.469Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:29.470Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:29.614Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:29.615Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:29.616Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:29.760Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:29.760Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:29.761Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:29.904Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:29.905Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:29.905Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:29.913Z  WARN 1669 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type is not supported]
+2026-10-19T21:37:30.052Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:30.053Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:30.054Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-19T21:37:30.213Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:30.214Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:30.215Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-19T21:37:30.380Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:30.381Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:30.382Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-19T21:37:30.544Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:30.545Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:30.545Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:30.699Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:30.700Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:30.701Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:30.854Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:30.855Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:30.856Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-19T21:37:31.003Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:31.004Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:31.004Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:31.161Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:31.161Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:31.162Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:31.304Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:31.305Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:31.306Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:31.458Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:31.458Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:31.459Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:31.666Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:31.667Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:31.668Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.449 s -- in org.zalando.logbook.servlet.MultiFilterSecurityTest
+[INFO] Running org.zalando.logbook.servlet.MultiFilterTest
+2026-10-19T21:37:31.852Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:31.852Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:31.853Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:31.999Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:32.000Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:32.001Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:32.363Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:32.364Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:32.365Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:32.506Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:32.506Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:32.507Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:32.647Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:32.648Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:32.648Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:32.785Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:32.785Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:32.786Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.116 s -- in org.zalando.logbook.servlet.MultiFilterTest
+[INFO] Running org.zalando.logbook.servlet.NullOutputStreamTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in org.zalando.logbook.servlet.NullOutputStreamTest
+[INFO] Running org.zalando.logbook.servlet.RemoteRequestTest
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.296 s -- in org.zalando.logbook.servlet.RemoteRequestTest
+[INFO] Running org.zalando.logbook.servlet.ServletInputStreamAdapterTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.106 s -- in org.zalando.logbook.servlet.ServletInputStreamAdapterTest
+[INFO] Running org.zalando.logbook.servlet.SkipTest
+2026-10-19T21:37:33.408Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:33.409Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:33.411Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:33.577Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:33.578Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:33.580Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.356 s -- in org.zalando.logbook.servlet.SkipTest
+[INFO] Running org.zalando.logbook.servlet.TeeTest
+2026-10-19T21:37:33.773Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:33.774Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:33.775Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:33.970Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:33.971Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:33.972Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:34.368Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:34.369Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:34.370Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:34.516Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:34.516Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:34.517Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:34.651Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:34.652Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:34.653Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:34.800Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:34.801Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:34.802Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.219 s -- in org.zalando.logbook.servlet.TeeTest
+[INFO] Running org.zalando.logbook.servlet.WritingTest
+2026-10-19T21:37:34.964Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:34.964Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:34.965Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:35.792Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:35.793Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:35.793Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:35.952Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:35.953Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:35.954Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-19T21:37:36.109Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:36.109Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:36.110Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T21:37:36.264Z  INFO 1669 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-19T21:37:36.264Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T21:37:36.265Z  INFO 1669 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.459 s -- in org.zalando.logbook.servlet.WritingTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 110, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] ------------------< org.zalando:logbook-httpclient5 >-------------------
+[INFO] Building logbook-httpclient5 4.3.0-SNAPSHOT                      [12/33]
+[INFO]   from logbook-httpclient5/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-httpclient5 ---
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-httpclient5 ---
+[INFO] Checking compile classpath
+[INFO] Checking runtime classpath
+[INFO] Checking test classpath
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-httpclient5 ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-httpclient5/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-httpclient5 ---
+[INFO] skip non existing resourceDirectory /project/logbook-httpclient5/src/main/resources
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-httpclient5 ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-httpclient5 ---
+[INFO] skip non existing resourceDirectory /project/logbook-httpclient5/src/test/resources
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-httpclient5 ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-httpclient5 ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.httpclient5.BufferingDynamicSizeDataStreamChannelTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.324 s -- in org.zalando.logbook.httpclient5.BufferingDynamicSizeDataStreamChannelTest
+[INFO] Running org.zalando.logbook.httpclient5.BufferingFixedSizeDataStreamChannelTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in org.zalando.logbook.httpclient5.BufferingFixedSizeDataStreamChannelTest
+[INFO] Running org.zalando.logbook.httpclient5.LocalRequestTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.321 s -- in org.zalando.logbook.httpclient5.LocalRequestTest
+[INFO] Running org.zalando.logbook.httpclient5.LogbookHttpAsyncResponseConsumerTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 78.95 s -- in org.zalando.logbook.httpclient5.LogbookHttpAsyncResponseConsumerTest
+[INFO] Running org.zalando.logbook.httpclient5.LogbookHttpExecHandlerTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.44 s -- in org.zalando.logbook.httpclient5.LogbookHttpExecHandlerTest
+[INFO] Running org.zalando.logbook.httpclient5.LogbookHttpInterceptorsPutTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.702 s -- in org.zalando.logbook.httpclient5.LogbookHttpInterceptorsPutTest
+[INFO] Running org.zalando.logbook.httpclient5.LogbookHttpInterceptorsTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.189 s -- in org.zalando.logbook.httpclient5.LogbookHttpInterceptorsTest
+[INFO] Running org.zalando.logbook.httpclient5.RemoteResponseTest
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.067 s -- in org.zalando.logbook.httpclient5.RemoteResponseTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 78, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] -------------------< org.zalando:logbook-openfeign >--------------------
+[INFO] Building logbook-openfeign 4.3.0-SNAPSHOT                        [13/33]
+[INFO]   from logbook-openfeign/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-openfeign ---
+[INFO]
+[INFO] --- duplicate-finder:2.0.1:check (default) @ logbook-openfeign ---
+[INFO] Checking compile classpath
+[INFO] Checking runtime classpath
+[INFO] Checking test classpath
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-openfeign ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-openfeign/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-openfeign ---
+[INFO] skip non existing resourceDirectory /project/logbook-openfeign/src/main/resources
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-openfeign ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-openfeign ---
+[INFO] skip non existing resourceDirectory /project/logbook-openfeign/src/test/resources
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-openfeign ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-openfeign ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.openfeign.FeignLogbookLoggerExceptionTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 40.93 s -- in org.zalando.logbook.openfeign.FeignLogbookLoggerExceptionTest
+[INFO] Running org.zalando.logbook.openfeign.FeignLogbookLoggerTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.814 s -- in org.zalando.logbook.openfeign.FeignLogbookLoggerTest
+[INFO] Running org.zalando.logbook.openfeign.FeignLogbookLoggerUnitTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.498 s -- in org.zalando.logbook.openfeign.FeignLogbookLoggerUnitTest
+[INFO] Running org.zalando.logbook.openfeign.LocalRequestTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.322 s -- in org.zalando.logbook.openfeign.LocalRequestTest
+[INFO] Running org.zalando.logbook.openfeign.RemoteResponseTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in org.zalando.logbook.openfeign.RemoteResponseTest
+[INFO] Running org.zalando.logbook.openfeign.UtilsTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.082 s -- in org.zalando.logbook.openfeign.UtilsTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 34, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] -----------< org.zalando:logbook-spring-boot-autoconfigure >------------
+[INFO] Building logbook-spring-boot-autoconfigure 4.3.0-SNAPSHOT        [14/33]
+[INFO]   from logbook-spring-boot-autoconfigure/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ logbook-spring-boot-autoconfigure ---
+[INFO]
+[INFO] --- jacoco:0.8.15:prepare-agent (prepare-agent) @ logbook-spring-boot-autoconfigure ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/project/logbook-spring-boot-autoconfigure/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ logbook-spring-boot-autoconfigure ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.16.0:compile (default-compile) @ logbook-spring-boot-autoconfigure ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ logbook-spring-boot-autoconfigure ---
+[INFO] Copying 20 resources from src/test/resources to target/test-classes
+[INFO]
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ logbook-spring-boot-autoconfigure ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 39 source files with javac [debug target 17] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.6.0:test (default-test) @ logbook-spring-boot-autoconfigure ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.zalando.logbook.autoconfigure.AsyncOnCompleteListenerWrapperTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 145.3 s -- in org.zalando.logbook.autoconfigure.AsyncOnCompleteLi
