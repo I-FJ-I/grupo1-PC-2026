@@ -8,7 +8,9 @@
 | 2 | `build(docker): añade Dockerfile multi-stage y .dockerignore` | Creación del `Dockerfile` en dos etapas (compilación con Maven/JDK 21 y ejecución con JRE 21 sin root) y exclusión de archivos innecesarios en `.dockerignore`. | Jiahui | ea01da813c49d7b4360390fa1416d25fa073ad4c |
 | 3 | `feat(docker): migra de H2 a PostgreSQL y añade docker-compose` | Sustitución del driver de H2 por PostgreSQL, limpieza de propiedades en `application.properties` y creación del fichero `docker-compose.yml` para levantar la API junto con PostgreSQL. | Jiahui | 7e8b7f8ef27f476aeeb89671d8467230894de0d8 |
 | 4 | `refactor(docker): externaliza la configuración a .env y añade plantilla .env.example` | Parametrización del `docker-compose.yml` mediante variables de entorno, creación de la plantilla `.env.example`, y aseguramiento de la exclusión de `.env` en `.gitignore` y `.dockerignore`. | Jiahui | c9ca4c2ddb1ec969884df877747acbf398c88a43 |
-| 5 | `feat(dev container) configurar dev container y documentar despliegue local` | Añadido fichero `devcontainer.json` para entorno reproducible, actualizado `README.md` con instrucciones de Docker y Dev Container, e incluido `.env` en `.gitignore`. | Fran | [Enlace al commit] |
+| 5 | `feat(dev container) configurar dev container y documentar despliegue local` | Añadido fichero `devcontainer.json` para entorno reproducible, actualizado `README.md` con instrucciones de Docker y Dev Container, e incluido `.env` en `.gitignore`. | Fran | 7ae911d39ab24fe9e7235598fd0b514fd2381b19 |
+| 6 | `docs(boletin3): documentación partes H e I` | Documentación de la Parte H (publicación de la imagen en Docker Hub) y de la Parte I (entorno reproducible con `zalando/logbook`), incluyendo el Dockerfile, el log de la ejecución parcial y la captura de Docker Hub. | Jesús Sánchez | be3a7acc3bbaf23bf9c0d6077e4bdb2a9a81c911 |
+
 
 ## Detalle por commit
 
@@ -46,6 +48,13 @@
 - **Autor:** Fran
 - **Relación con el boletín:** [Parte F (Dev container)](#parte-f--dev-container) y [Parte G (Versionar los cambios)](#parte-g--versionar-los-cambios).
 - **Uso de IA:** Gemini. Prompts utilizados: "explicación de campos en devcontainer.json".
+
+### 6. `docs(boletin3): documentación partes H e I`
+
+- **Qué se hizo:** Se completó el `boletin3.md` con la Parte H, documentando el login en Docker Hub, el etiquetado y el `push` de la imagen `tareas-api:0.1` como `wjesussanchez/tareas-api:0.1`, junto con su digest y una captura del repositorio publicado. También se añadió la Parte I, con la selección de `zalando/logbook`, el análisis de sus requisitos, el `Dockerfile` del entorno de pruebas y la ejecución parcial de la suite. Se incorporaron además el `Dockerfile` en `seguimiento/B3`, el log `test-ejecucion-resultado.txt` y la captura `JESUS-b3-H(1).png`.
+- **Autor:** Jesús
+- **Relación con el boletín:** [Parte H (Registry de Docker)](#parte-h---registry-de-docker-no-modifica-el-repositorio) y [Parte I (Entorno de pruebas reproducible)](#parte-i---entorno-de-pruebas-reproducible-no-modifica-el-repositorio).
+- **Uso de IA:** IA (OpenCode). Utilizada para buscar el repositorio del último apartado y para corregir faltas ortográficas del `boletin3.md`.
 
 ## Descripción narrativa de lo hecho en la sesión y relación con los commits
 
@@ -350,3 +359,200 @@ Se actualizó el fichero `README.md` de la raíz del proyecto incorporando dos a
 2. Cómo iniciar y usar el entorno de Dev Container.
 
 Todo el trabajo (Dockerfile, Compose, Dev Container, actualizaciones del POM y propiedades) se englobó en una nueva rama a partir de un Issue en GitHub y se integró a `main` a través de un Pull Request, asegurando de que el fichero `.env` nunca formara parte de los archivos rastreados por Git.
+
+### Parte H - Registry de Docker (no modifica el repositorio)
+
+Docker Hub (o Registry de Docker) es un servicio en línea que permite almacenar, compartir y descargar imágenes de Docker. Para subir una imagen a Docker Hub, es necesario tener creada una cuenta en Docker. Para iniciar sesión, se ejecuta el comando ``docker login``, el cual autentica con las credenciales existentes.
+
+```powershell
+
+>docker login
+Authenticating with existing credentials... [Username: wjesussanchez]
+
+Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+Login Succeeded
+
+```
+
+El siguiente paso es construir la imagen. Aquellas que son subidas por los usuarios/la comunidad siguen el siguiente formato en su nombre: ``<nombre_de_usuario>/<repositorio>:<etiqueta>``. Dado que las imágenes creadas en el apartado C no contienen el nombre de usuario ``wjesussanchez``, es necesario volver a construirlas con un nuevo nombre. Para evitar la duplicidad, simplemente se añade un alias a la imagen ya existente:
+
+```powershell
+docker tag tareas-api:0.1 wjesussanchez/tareas-api:0.1
+C:\MISUM\PracticasContinuas\grupo1-PC-2026>docker images
+                                                                                                    i Info →   U  In Use
+IMAGE                          ID             DISK USAGE   CONTENT SIZE   EXTRA
+grupo1-pc-2026-api:latest      c5d7860eea27        550MB          160MB    U
+postgres:16                    ca0bd484cb98        642MB          166MB    U
+tareas-api:0.1                 7876ec49429c        550MB          160MB
+tareas-api:build               04f91650e30b       1.18GB          408MB
+wjesussanchez/tareas-api:0.1   7876ec49429c        550MB          160MB
+```
+
+Como se puede ver en la salida de ``docker images``, tanto ``tareas-api:0.1`` como ``wjesussanchez/tareas-api:0.1`` tienen el mismo identificador. Con la convención de nombres cumplida, la imagen se puede subir a Docker Hub mediante el siguiente comando:
+
+```powershell
+docker push wjesussanchez/tareas-api:0.1
+d9d511d19a19: Pushed
+d0d2974baaa8: Pushed
+435bf5c20694: Pushed
+44136fa355b3: Pushed
+082f3711ec02: Pushed
+0df34dd37994: Pushed
+35e448951dfd: Pushed
+4c7ba16bd344: Pushed
+3fff897544cd: Pushed
+4f4fb700ef54: Mounted from hazelcast/hazelcast
+5acf4b33726a: Pushed
+7c29b9cc5371: Pushed
+0.1: digest: sha256:7876ec49429c30b73c59f53e0389055a7fffd813807dad07a3e6d4eb7d824d92 size: 856
+```
+
+Una vez finalizado el comando, la imagen ya está disponible para todo el mundo. En el siguiente enlace se muestra en Docker Hub: https://hub.docker.com/r/wjesussanchez/tareas-api. 
+
+![Repositorio de Docker Hub](<capturas/B3/JESUS-b3-H(1).png>)
+
+
+### Parte I - Entorno de pruebas reproducible (no modifica el repositorio)
+
+#### I.1 Repositorio elegido
+
+Dada la gran cantidad de repositorios disponibles en GitHub, se aplicaron varios filtros para acotar la búsqueda:
+
+- **Estrellas:** mínimo 1000.
+- **Lenguaje:** Java.
+- **Último push:** posterior al 1 de octubre de 2026.
+- **Licencia:** MIT.
+
+La búsqueda utilizada fue:
+
+```
+stars:>1000 language:Java pushed:>2026-10-01 license:mit
+```
+
+El resultado fue de alrededor de 107 repositorios. De entre todos ellos se escogió [zalando/logbook](https://github.com/zalando/logbook), una librería Java extensible que permite registrar de forma completa las peticiones y respuestas HTTP de distintas tecnologías, tanto del lado del cliente como del servidor. El repositorio fue clonado fuera de este repositorio para la realización de esta parte.
+
+```powershell
+git clone https://github.com/zalando/logbook.git 
+```
+
+#### Análisis de requisitos
+
+Este proyecto solo presenta dos dependencias obligatorias:
+- Java 17 (o mayor): Se indica en el [README.md](https://github.com/zalando/logbook/blob/main/README.md#dependencies), en la sección de Dependencias, y se especifica en el [pom.xml](https://github.com/zalando/logbook/blob/main/pom.xml) raíz:
+
+  ```xml
+  <java.version>17</java.version>
+  <maven.compiler.source>17</maven.compiler.source>
+  <maven.compiler.target>17</maven.compiler.target>
+  ```
+
+- Maven 3.10.0: utilizado como gestor de dependencias y herramienta de build para todos los módulos del proyecto. Todas sus dependencias se resuelven desde Maven Central (no se especifica ningún repositorio en el [pom.xml](https://github.com/zalando/logbook/blob/main/pom.xml) raíz). Además, para asegurarse de que se usa la misma versión de Maven sin importar la máquina, el proyecto utiliza Maven Wrapper, especificando la versión 3.10.0 en [maven-wrapper.properties](https://github.com/zalando/logbook/blob/main/.mvn/wrapper/maven-wrapper.properties).
+
+
+  ```properties
+  wrapperVersion=3.3.4
+  distributionType=bin
+  distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.10.0/apache-maven-3.10.0-bin.zip
+  wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.3.4/maven-wrapper-3.3.4.jar
+  ```
+
+De manera adicional, uno de sus módulos (`logbook-ktor`) utiliza Kotlin, más concretamente su versión 2.4.20, declarado en el módulo `logbook-parent/pom.xml`.
+
+El resto de dependencias solo son necesarias si se usan los módulos de integración correspondientes:
+
+- Servlet Container.
+- Apache HttpClient 4.x o 5.x.
+- JAX-RS 3.x (Jakarta REST).
+- Netty 4.x.
+- OkHttp 2.x o 3.x.
+- Spring 7.0.9.
+- Spring Boot 4.1.1.
+- Ktor 3.6.0.
+- logstash-logback-encoder 5.x.
+- Jackson 2.22.3 o Jackson 3.2.3.
+
+Por último, a nivel de testing, las dependencias que se utilizan se declaran en el módulo `logbook-parent/pom.xml`, reutilizado por el resto de módulos:
+
+| Dependencia | Versión | Para qué se usa |
+|---|---:|---|
+| JUnit Jupiter | 6.1.3 | Framework principal: ciclo de vida, `@Test`, aserciones y tests parametrizados |
+| AssertJ | 3.27.7 | Aserciones fluidas y legibles sobre objetos, listas y excepciones |
+| Mockito | 5.2.0 | Creación de mocks y spies para aislar dependencias |
+| `mockito-junit-jupiter` | 5.2.0 | Integración de Mockito con JUnit 5 (`@Mock`, `@InjectMocks`) |
+| Hamcrest | 3.0 | Matchers usados por algunos tests y por las verificaciones de WireMock |
+| WireMock | 3.12.1 | Servidor HTTP embebido para simular respuestas sin depender de servicios reales |
+| Guava | 33.7.2-jre | Utilidades de apoyo en los tests (colecciones, streams, etc.) |
+| JsonPath | 3.0.0 | Extracción y verificación de campos concretos dentro de respuestas JSON |
+
+
+#### Dockerfile
+
+El proyecto solo requiere como dependencias JDK 17 y Maven. No obstante, su primera ejecución necesita conexión a Maven Central para descargar las dependencias y plugins necesarios. También, dado el uso de WireMock, que levanta un servidor HTTP local, se requiere acceso a la red loopback.
+
+Sabiendo esto, el archivo ``Dockerfile`` incluirá la imagen `maven:3.10.0-eclipse-temurin-17`, que incluye las dos dependencias obligatorias. Por otro lado, se establece ``/project`` como directorio de trabajo, que es donde se montará el código fuente. 
+
+```dockerfile
+# Dependencias: Java 17 y Maven 3.10.0
+FROM maven:3.10.0-eclipse-temurin-17
+
+# Metadatos del contenedor
+LABEL org.opencontainers.image.title="logbook-tests"
+LABEL org.opencontainers.image.description="Entorno de tests para zalando/logbook"
+LABEL org.opencontainers.image.source="https://github.com/zalando/logbook"
+
+# El código fuente NO se copia: se monta en /project en tiempo de ejecución.
+WORKDIR /project
+
+CMD ["mvn", "-B", "test"]
+```
+
+Para construir la imagen se ejecuta el siguiente comando:
+
+```powershell
+C:\MISUM\PracticasContinuas\grupo1-PC-2026>cd seguimiento/b3
+
+C:\MISUM\PracticasContinuas\grupo1-PC-2026\seguimiento\B3>docker build -t logbook-tests:1.0 .
+[+] Building 3.1s (7/7) FINISHED                                                                                                       docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                   0.1s
+ => => transferring dockerfile: 778B                                                                                                                   0.0s
+ => [internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-17                                                                        2.4s
+ => [auth] library/maven:pull token for registry-1.docker.io                                                                                           0.0s
+ => [internal] load .dockerignore                                                                                                                      0.1s
+ => => transferring context: 2B                                                                                                                        0.0s
+ => [1/2] FROM docker.io/library/maven:3.9-eclipse-temurin-17@sha256:1a352420f7aba21f5ad08df31bab55f74c013fb491f1ae8ab1dd7ff9ed698584                  0.1s
+ => => resolve docker.io/library/maven:3.9-eclipse-temurin-17@sha256:1a352420f7aba21f5ad08df31bab55f74c013fb491f1ae8ab1dd7ff9ed698584                  0.0s
+ => CACHED [2/2] WORKDIR /project                                                                                                                      0.0s
+ => exporting to image                                                                                                                                 0.2s
+ => => exporting layers                                                                                                                                0.0s
+ => => exporting manifest sha256:4ce2e383a6881e7e1481e258d965cd34f6adf682236ec7cda1dd380dbe592dcc                                                      0.0s
+ => => exporting config sha256:24a907d3a99d2592d3a6c78cee8f8628403b4a20e12131cbd39df5839a289398                                                        0.0s
+ => => exporting attestation manifest sha256:b5a21fd606539e3410f428b0e8cc39cd604a47910a3a6d9619ddfda152fe429f                                          0.0s
+ => => exporting manifest list sha256:e36de2c00a679b65fab0182edc49db9bc413994ae0e46d29c0e65ce00011f9e1                                                 0.0s
+ => => naming to docker.io/library/logbook-tests:1.0                                                                                                   0.0s
+ => => unpacking to docker.io/library/logbook-tests:1.0                                                                                                0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/r4duo9kppp9g79sbk1vbwaq1n
+```
+Una vez construida, se ejecutan los tests montando el código fuente y un volumen para la caché de Maven:
+
+```powershell
+docker run --rm `
+  -v "C:\MISUM\PracticasContinuas\parte-i\logbook:/project" `
+  -v logbook-m2:/root/.m2 `
+  logbook-tests:1.0
+```
+Hay que tener en cuenta lo siguiente:
+
+- La primera opción `-v` enlaza la carpeta local `parte-i\logbook` con `/project` dentro del contenedor, de modo que Maven compila y ejecuta los tests sobre el código real. De esta forma, se separa el entorno de ejecución del código.
+- La segunda opción ``-v`` monta el volumen nombrado `logbook-m2` en `/root/.m2`, que es donde Maven guarda las dependencias descargadas. De esta forma, **NO** es necesario descargar en cada ejecución.
+- Por último, `--rm` elimina el contenedor al terminar.
+
+La primera ejecución tarda más porque descarga todas las dependencias; las siguientes reutilizan la caché de `logbook-m2` y arrancan mucho más rápido.
+
+Al lanzar el contenedor, se muestra que el reactor de Maven contiene 33 entradas. En el momento de la entrega se han completado 14 de ellas, todas con estado 'SUCCESS' y sin ningún test con fallo o error. Dado el tiempo de la entrega, no es posible incluir el resumen final del reactor
+ ya que el proceso sigue en ejecución.
+El log parcial se adjunta como evidencia en [test-ejecucion-resultado.txt](B3/test-ejecucion-resultado.txt) y la suite puede reproducirse con el
+mismo comando.
+
