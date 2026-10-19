@@ -9,6 +9,7 @@
 | 3 | `feat(docker): migra de H2 a PostgreSQL y añade docker-compose` | Sustitución del driver de H2 por PostgreSQL, limpieza de propiedades en `application.properties` y creación del fichero `docker-compose.yml` para levantar la API junto con PostgreSQL. | Jiahui | 7e8b7f8ef27f476aeeb89671d8467230894de0d8 |
 | 4 | `refactor(docker): externaliza la configuración a .env y añade plantilla .env.example` | Parametrización del `docker-compose.yml` mediante variables de entorno, creación de la plantilla `.env.example`, y aseguramiento de la exclusión de `.env` en `.gitignore` y `.dockerignore`. | Jiahui | c9ca4c2ddb1ec969884df877747acbf398c88a43 |
 | 5 | `feat(dev container) configurar dev container y documentar despliegue local` | Añadido fichero `devcontainer.json` para entorno reproducible, actualizado `README.md` con instrucciones de Docker y Dev Container, e incluido `.env` en `.gitignore`. | Fran | 7ae911d39ab24fe9e7235598fd0b514fd2381b19 |
+| 6 | `docs(boletin3): documentación partes H e I` | Documentación de la Parte H (publicación de la imagen en Docker Hub) y de la Parte I (entorno reproducible con `zalando/logbook`), incluyendo el Dockerfile, el log de la ejecución parcial y la captura de Docker Hub. | Jesús Sánchez | be3a7acc3bbaf23bf9c0d6077e4bdb2a9a81c911 |
 
 
 ## Detalle por commit
@@ -47,6 +48,13 @@
 - **Autor:** Fran
 - **Relación con el boletín:** [Parte F (Dev container)](#parte-f--dev-container) y [Parte G (Versionar los cambios)](#parte-g--versionar-los-cambios).
 - **Uso de IA:** Gemini. Prompts utilizados: "explicación de campos en devcontainer.json".
+
+### 6. `docs(boletin3): documentación partes H e I`
+
+- **Qué se hizo:** Se completó el `boletin3.md` con la Parte H, documentando el login en Docker Hub, el etiquetado y el `push` de la imagen `tareas-api:0.1` como `wjesussanchez/tareas-api:0.1`, junto con su digest y una captura del repositorio publicado. También se añadió la Parte I, con la selección de `zalando/logbook`, el análisis de sus requisitos, el `Dockerfile` del entorno de pruebas y la ejecución parcial de la suite. Se incorporaron además el `Dockerfile` en `seguimiento/B3`, el log `test-ejecucion-resultado.txt` y la captura `JESUS-b3-H(1).png`.
+- **Autor:** Jesús
+- **Relación con el boletín:** [Parte H (Registry de Docker)](#parte-h---registry-de-docker-no-modifica-el-repositorio) y [Parte I (Entorno de pruebas reproducible)](#parte-i---entorno-de-pruebas-reproducible-no-modifica-el-repositorio).
+- **Uso de IA:** IA (OpenCode). Utilizada para buscar el repositorio del último apartado y para corregir faltas ortográficas del `boletin3.md`.
 
 ## Descripción narrativa de lo hecho en la sesión y relación con los commits
 
