@@ -34,14 +34,20 @@ mvn clean package
 
 Una vez finalizado, el archivo compilado se generará en la ruta `target/task-api-1.0.0.jar`.
 
-## Cómo arrancar la aplicación
+## Despliegue en local
 
-El proyecto utiliza una base de datos en memoria (H2) que se inicializa al vuelo, por lo que no necesitas configurar servicios externos. Para iniciar el servidor web embebido, ejecuta el JAR generado:
+### Usando Docker Compose
 
-```bash
-java -jar target/task-api-1.0.0.jar
+1. Copia la plantilla de variables de entorno: `cp .env.example .env`
+2. Modifica el archivo `.env` con tus credenciales locales.
+3. Ejecuta `docker compose up --build -d` para levantar la API y la base de datos PostgreSQL.
+4. Verifica el estado en `http://localhost:8080/actuator/health`.
 
-```
+### Usando Dev Container (VS Code)
+
+1. Instala la extensión **Dev Containers**.
+2. Selecciona **Dev Containers: Reopen in Container** en la paleta de comandos.
+3. Una vez cargado el entorno, abre una terminal integrada y ejecuta `docker compose up --build`.
 
 La aplicación arrancará y la API estará disponible en `http://localhost:8080/api/tasks`.
 
