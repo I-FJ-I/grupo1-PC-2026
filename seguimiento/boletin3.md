@@ -8,6 +8,7 @@
 | 2 | `build(docker): añade Dockerfile multi-stage y .dockerignore` | Creación del `Dockerfile` en dos etapas (compilación con Maven/JDK 21 y ejecución con JRE 21 sin root) y exclusión de archivos innecesarios en `.dockerignore`. | Jiahui | ea01da813c49d7b4360390fa1416d25fa073ad4c |
 | 3 | `feat(docker): migra de H2 a PostgreSQL y añade docker-compose` | Sustitución del driver de H2 por PostgreSQL, limpieza de propiedades en `application.properties` y creación del fichero `docker-compose.yml` para levantar la API junto con PostgreSQL. | Jiahui | 7e8b7f8ef27f476aeeb89671d8467230894de0d8 |
 | 4 | `refactor(docker): externaliza la configuración a .env y añade plantilla .env.example` | Parametrización del `docker-compose.yml` mediante variables de entorno, creación de la plantilla `.env.example`, y aseguramiento de la exclusión de `.env` en `.gitignore` y `.dockerignore`. | Jiahui | c9ca4c2ddb1ec969884df877747acbf398c88a43 |
+| 5 | `feat(dev container) configurar dev container y documentar despliegue local` | Añadido fichero `devcontainer.json` para entorno reproducible, actualizado `README.md` con instrucciones de Docker y Dev Container, e incluido `.env` en `.gitignore`. | Fran | [Enlace al commit] |
 
 ## Detalle por commit
 
@@ -38,6 +39,13 @@
 - **Autor:** Jiahui
 - **Relación con el boletín:** [Parte E (Sacar la configuración a un fichero `.env`)](#parte-e--sacar-la-configuración-a-un-fichero-env).
 - **Uso de IA:** No
+
+### 5. `feat(dev container): configurar dev container y documentar despliegue local`
+
+- **Qué se hizo:** Se creó el directorio `.devcontainer` con el fichero `devcontainer.json` configurado para Java 21, Maven y soporte de Docker-in-Docker. Se actualizó el `README.md` con los pasos para levantar el entorno de manera local mediante Compose y mediante Dev Container. Se verificó que el fichero local `.env` estuviera excluido en `.gitignore`.
+- **Autor:** Fran
+- **Relación con el boletín:** [Parte F (Dev container)](#parte-f--dev-container) y [Parte G (Versionar los cambios)](#parte-g--versionar-los-cambios).
+- **Uso de IA:** Gemini. Prompts utilizados: "explicación de campos en devcontainer.json".
 
 ## Descripción narrativa de lo hecho en la sesión y relación con los commits
 
@@ -313,3 +321,32 @@ docker compose up --build -d
 curl.exe http://localhost:8080/actuator/health
 {"status":"UP"}
 ```
+
+### Parte F — Dev container
+
+Para garantizar que cualquier persona del equipo trabaje con las mismas herramientas (JDK, Maven, extensiones del IDE) sin tener que instalarlas localmente, se ha implementado un entorno de desarrollo como código utilizando Dev Containers.
+
+Se creó el archivo `.devcontainer/devcontainer.json` con la siguiente configuración:
+
+- **`name`**: Nombre identificativo del entorno (`tareas-api`).
+- **`image`**: Define la imagen base proporcionada por Microsoft que ya incluye Java 21.
+- **`features`**: Se añaden scripts de instalación estandarizados:
+  - `java`: Fuerza la instalación de Maven.
+  - `docker-in-docker`: **Esta feature es clave**, ya que instala el motor de Docker dentro del propio contenedor de desarrollo. Permite ejecutar comandos como `docker compose up` desde la terminal integrada de VS Code para levantar la base de datos sin salir del entorno aislado.
+- **`forwardPorts`**: Mapea los puertos `8080` (API) y `5432` (PostgreSQL) hacia la máquina host para poder interactuar con ellos desde el navegador o clientes de base de datos locales.
+- **`postCreateCommand`**: Ejecuta comandos automáticamente tras crear el contenedor:
+  1. `test -f .env || cp .env.example .env`: Si no existe `.env`, crea uno a partir de la plantilla para evitar fallos en Compose.
+  2. `if [ -d .githooks ]; then git config core.hooksPath .githooks; fi`: Configura la ruta de los hooks de Git si el proyecto los utiliza.
+  3. `mvn -B dependency:go-offline`: Descarga en modo *batch* todas las dependencias del `pom.xml` para acelerar las compilaciones futuras.
+- **`customizations`**: Fuerza a VS Code a instalar automáticamente el paquete de extensiones de Java y de Docker al abrir el contenedor.
+
+**Verificación:** Se abrió el proyecto en VS Code seleccionando *Dev Containers: Reopen in Container*. Una vez cargado el entorno, se ejecutó `docker compose up --build -d` en la terminal integrada y se validó el acceso correcto desde el navegador host a `http://127.0.0.1:8080/actuator/health`.
+
+### Parte G — Versionar los cambios
+
+Se actualizó el fichero `README.md` de la raíz del proyecto incorporando dos apartados detallados:
+
+1. Cómo levantar el proyecto con Docker (usando Docker Compose y el archivo `.env`).
+2. Cómo iniciar y usar el entorno de Dev Container.
+
+Todo el trabajo (Dockerfile, Compose, Dev Container, actualizaciones del POM y propiedades) se englobó en una nueva rama a partir de un Issue en GitHub y se integró a `main` a través de un Pull Request, asegurando de que el fichero `.env` nunca formara parte de los archivos rastreados por Git.
