@@ -65,7 +65,9 @@ class TaskServiceTest {
     assertNotNull(result);
     assertEquals(1, result.getTotalElements());
     assertEquals(1, result.getContent().size());
-    assertEquals("Aprender Java 21", result.getContent().get(0).getTitle());
+
+    // Forzamos el fallo aquí cambiando el título esperado:
+    assertEquals("Título Falso para romper el test", result.getContent().get(0).getTitle());
 
     verify(taskRepository, times(1)).findAll(pageable);
   }
