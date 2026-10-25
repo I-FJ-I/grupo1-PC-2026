@@ -1,0 +1,80 @@
+name: AI Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  ai-review:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Obtener el diff del PR
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          git diff origin/${{ github.base_ref }}...HEAD > pr_diff.txt
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias
+        run: pip install requests
+
+      - name: Generar resumen con IA y comentar
+        env:
+          OLLAMA_API_TOKEN: ${{ secrets.OLLAMA_API_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          python -c '
+          import os, requests, sys, json
+          
+          def post_comment(text):
+              pr_num = os.environ.get("PR_NUMBER")
+              with open("comment.txt", "w") as f:
+                  f.write(text)
+              os.system(f"gh pr comment {pr_num} -F comment.txt")
+          
+          try:
+              with open("pr_diff.txt", "r") as f:
+                  diff = f.read()
+                  
+              token = os.environ.get("OLLAMA_API_TOKEN")
+              if not token:
+                  raise ValueError("Falta el token")
+                  
+              url = "https://ollama.com/api/chat"
+              
+              headers = {
+                  "Authorization": f"Bearer {token}", 
+                  "Content-Type": "application/json"
+              }
+              
+              payload = {
+                  "model": "beam:cloud", 
+                  "messages": [
+                      {"role": "system", "content": "Eres un asistente experto. Resume en lenguaje natural los siguientes cambios de código."},
+                      {"role": "user", "content": f"{diff[:3000]}"}
+                  ],
+                  "stream": False
+              }
+              
+              response = requests.post(url, json=payload, headers=headers, timeout=30)
+              response.raise_for_status()
+              
+              summary = response.json()["message"]["content"]
+              post_comment(summary)
+              
+          except Exception as e:
+              post_comment("La IA ha fallado")
+          '

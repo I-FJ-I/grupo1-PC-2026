@@ -1,5 +1,7 @@
 # Task API - Gestión de Tareas
 
+[![AI Code Review](https://github.com/I-FJ-I/grupo1-PC-2026.git/actions/workflows/ai-review.yml/badge.svg)](https://github.com/I-FJ-I/grupo1-PC-2026.git/actions/workflows/ai-review.yml)
+
 API REST para la gestión de tareas (To-Do) desarrollada con Java 21 y Spring Boo. Este proyecto permite realizar operaciones CRUD sobre tareas, gestionando su estado, prioridad y fecha límite mediante persistencia en una base de datos H2 en memori.
 
 ## Requisitos previos
