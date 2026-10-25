@@ -162,8 +162,8 @@ Para garantizar que el código roto nunca llegue a la rama principal, se configu
 
 Para verificar esta barrera empíricamente, se abrió un Pull Request con un test roto intencionadamente. Al ejecutarse el workflow, el job `test` falló. Como resultado, GitHub deshabilitó el botón de "Merge pull request", demostrando que el CI funciona como un muro de contención efectivo frente a regresiones.
 
-![Comprobación PR bloqueado 1](capturas/FRAN-b4-E(1).png)
-![Comprobación PR bloqueado 2](capturas/FRAN-b4-E(2).png)
+![Comprobación PR bloqueado 1](capturas/FRAN-b4-D(1).png)
+![Comprobación PR bloqueado 2](capturas/FRAN-b4-D(2).png)
 
 ### Parte E — Ampliaciones interesantes (Code Review con IA)
 
@@ -172,3 +172,6 @@ Se automatizó la revisión de código incorporando un asistente de inteligencia
 Para mantener la seguridad, el token de la API no se incluyó en el código fuente, sino que se almacenó de forma cifrada en **Settings → Secrets and variables → Actions** bajo la variable `OLLAMA_API_TOKEN`. El script de Python inyecta este secreto como variable de entorno durante la ejecución y, si el proceso tiene éxito, publica el resumen mediante GitHub CLI (`gh pr comment`). Si falla la API o la autenticación, publica el mensaje de rescate *"La IA ha fallado"*.
 
 Finalmente, se integró un badge en el `README.md` para monitorizar visualmente el estado de esta acción. Tras corregir un pequeño error en la URL (eliminar `.git`), el badge quedó operativo en la cabecera del proyecto.
+
+![Comprobación Code Review 1](capturas/FRAN-b4-E(1).png)
+![Comprobación Code Review 2](capturas/FRAN-b4-E(2).png)
