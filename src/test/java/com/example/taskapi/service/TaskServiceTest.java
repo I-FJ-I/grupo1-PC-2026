@@ -62,7 +62,7 @@ class TaskServiceTest {
 
     Page<Task> result = taskService.getAllTasks(pageable);
 
-    assertNotNull(result);
+    assertNull(result);
     assertEquals(1, result.getTotalElements());
     assertEquals(1, result.getContent().size());
     assertEquals("Aprender Java 21", result.getContent().get(0).getTitle());
