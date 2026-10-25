@@ -10,6 +10,9 @@
 | 4 | `ci(actions): divide el pipeline en jobs lint, test y package` | Reestructuración de `.github/workflows/ci.yml` en tres jobs secuenciales (`lint`, `test` y `package`) encadenados mediante `needs`, integrando `dorny/test-reporter` y `actions/upload-artifact`. | Jiahui | fd8c8809c695bca1635dd46a52cf0a9dac23b976 |
 | 5 | `style(app): introduce fallo de formato saltando pre-commit hook` | Alteración del formato en `TaskApiApplication.java` realizando el commit con `--no-verify` para comprobar que el job `lint` falla y bloquea los jobs posteriores. | Jiahui | 4e0c52113566479f68669e928919fef6fbc84ead |
 | 6 | `style(app): corrige formato de codigo con Spotless` | Formateo del código fuente mediante `mvn spotless:apply` para superar el job `lint` y completar la ejecución del pipeline con generación de informes JUnit y artefacto JAR. | Jiahui | 3221d5f5727fd0b9fc1331f8388d03b0b5fe3661 |
+| 7 | `ci(actions): romper un test para compruebar que GitHub impide fusionarlo` | Modificación de un test para forzar su fallo y comprobar empíricamente que la regla de protección de rama impide el mergeo del Pull Request. | Fran | d031306a7bf18a6e7ca6c7a52a64e86704eeaf2c |
+| 8 | `feat(actions): añadir workflow de IA para revisión de código y badge` | Creación del fichero `.github/workflows/ai-review.yml` invocando el modelo `beam:cloud` de Ollama e inclusión del badge de estado en el `README.md`. | Fran | 3abed67f3a543887c604804687e9a309b364899b |
+| 9 | `fix(actions): no se mostraba correctamente el badge en el README` | Eliminación de la extensión `.git` en las URLs del badge dentro del `README.md` para que la imagen SVG renderice correctamente. | Fran | cab803b904a8bfab068904bdb4064532c814d68c |
 
 
 ## Detalle por commit
@@ -54,6 +57,27 @@
 - **Qué se hizo:** Se aplicó el formato correcto con Spotless y se subió un nuevo commit a la rama, logrando que los tres jobs (`lint`, `test` y `package`) finalizaran con éxito, publicando el informe de pruebas JUnit en el PR y almacenando el artefacto `app-jar`.
 - **Autor:** Jiahui
 - **Relación con el boletín:** [Parte C (Separar responsabilidades en jobs)](#parte-c--separar-responsabilidades-en-jobs).
+- **Uso de IA:** No.
+
+### 7. `ci(actions): romper un test para compruebar que GitHub impide fusionarlo`
+
+- **Qué se hizo:** Se introdujo intencionadamente un fallo en un test unitario creando un PR hacia `main`. El objetivo fue validar que la configuración "Require status checks to pass before merging" bloquea activamente la fusión de código si el job `test` falla.
+- **Autor:** Fran
+- **Relación con el boletín:** [Parte D (Convertir el CI en una barrera)](#parte-d--convertir-el-ci-en-una-barrera).
+- **Uso de IA:** No.
+
+### 8. `feat(actions): añadir workflow de IA para revisión de código y badge`
+
+- **Qué se hizo:** Se implementó un nuevo workflow que reacciona a los PR extrayendo el diff de los cambios y enviándolo mediante un script en Python a la API de Ollama Cloud (`beam:cloud`). El resultado se publica automáticamente como un comentario en el PR y se añadió el badge en el README.
+- **Autor:** Fran
+- **Relación con el boletín:** [Parte E (Ampliaciones interesantes - Gestión de secretos)](#parte-e--ampliaciones-interesantes-code-review-con-ia).
+- **Uso de IA:** Sí (soporte para adaptar el script de Python a la API de Ollama Cloud).
+
+### 9. `fix(actions): no se mostraba correctamente el badge en el README`
+
+- **Qué se hizo:** Se corrigió un error de sintaxis en el Markdown del `README.md` donde el badge no se mostraba por incluir `.git` al final de la URL del repositorio.
+- **Autor:** Fran
+- **Relación con el boletín:** [Parte E (Ampliaciones interesantes - Gestión de secretos)](#parte-e--ampliaciones-interesantes-code-review-con-ia).
 - **Uso de IA:** No.
 
 ## Descripción narrativa de lo hecho en la sesión y relación con los commits
@@ -131,3 +155,23 @@ Se pueden compartir entre distintos runners mediante dos mecanismos de GitHub Ac
 
 - **Con artefactos (`actions/upload-artifact` y `actions/download-artifact`):** Subiendo los archivos compilados o el `.jar` de `target/` al final de un job con `actions/upload-artifact@v4` y descargándolos al inicio del job siguiente mediante `actions/download-artifact@v4`.
 - **Con caché (`actions/cache`):** Almacenando en caché el directorio `target/` asociado al SHA del commit (`${{ github.sha }}`) en el primer job y restaurándolo en los jobs posteriores del mismo workflow.
+
+### Parte D — Convertir el CI en una barrera
+
+Para garantizar que el código roto nunca llegue a la rama principal, se configuraron reglas de protección sobre la rama `main` desde **Settings → Branches**. Se activó la opción *"Require status checks to pass before merging"* exigiendo obligatoriamente que los jobs `lint`, `test` y `package` se completen con éxito.
+
+Para verificar esta barrera empíricamente, se abrió un Pull Request con un test roto intencionadamente. Al ejecutarse el workflow, el job `test` falló. Como resultado, GitHub deshabilitó el botón de "Merge pull request", demostrando que el CI funciona como un muro de contención efectivo frente a regresiones.
+
+![Comprobación PR bloqueado 1](capturas/FRAN-b4-D(1).png)
+![Comprobación PR bloqueado 2](capturas/FRAN-b4-D(2).png)
+
+### Parte E — Ampliaciones interesantes (Code Review con IA)
+
+Se automatizó la revisión de código incorporando un asistente de inteligencia artificial. Para ello, se creó el workflow `ai-review.yml`, que extrae el `diff` de cada Pull Request y lo envía a un modelo de lenguaje en la nube (`beam:cloud` de Ollama).
+
+Para mantener la seguridad, el token de la API no se incluyó en el código fuente, sino que se almacenó de forma cifrada en **Settings → Secrets and variables → Actions** bajo la variable `OLLAMA_API_TOKEN`. El script de Python inyecta este secreto como variable de entorno durante la ejecución y, si el proceso tiene éxito, publica el resumen mediante GitHub CLI (`gh pr comment`). Si falla la API o la autenticación, publica el mensaje de rescate *"La IA ha fallado"*.
+
+Finalmente, se integró un badge en el `README.md` para monitorizar visualmente el estado de esta acción. Tras corregir un pequeño error en la URL (eliminar `.git`), el badge quedó operativo en la cabecera del proyecto.
+
+![Comprobación Code Review 1](capturas/FRAN-b4-E(1).png)
+![Comprobación Code Review 2](capturas/FRAN-b4-E(2).png)
