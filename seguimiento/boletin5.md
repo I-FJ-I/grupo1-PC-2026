@@ -29,3 +29,35 @@ La pieza fundamental de este workflow es la acción `docker/metadata-action`, qu
 La autenticación para subir la imagen a `ghcr.io` se resuelve de forma nativa utilizando `secrets.GITHUB_TOKEN`, sin necesidad de gestionar o configurar credenciales de plataformas externas.
 
 ![Imagen en Packages](capturas/FRAN-b5-A.png)
+
+### Parte B - Publicar una versión de verdad
+
+En Git existen las etiquetas, que normalmente son utilizadas para marcar versiones de la aplicación (por ejemplo, la de lanzamiento). Pueden ser tanto ligeras, que son un simple puntero hacia un commit en concreto, como anotadas, que son objetos propios que se guardan en la base de datos de Git y que contienen la siguiente información:
+
+- Puntero a un commit en concreto.
+- Nombre del autor y correo.
+- Fecha y hora de la creación.
+- Mensaje descriptivo.
+- Firma GPG (GNU Privacy Guard): autentica tu identidad y garantiza que el código no fue modificado por nadie más. Opcional.
+
+Para crear una etiqueta se ejecuta el comando ``git tag -a v1.0.0 -m "Primera versión publicable de la API de tareas"``. Para subirla al repositorio remoto se usa ``git push origin v1.0.0``. Una vez ejecutados los comandos, la etiqueta ya es visible en el repositorio remoto.
+
+![Etiqueta publicada](./capturas/JESUS-B5-B(1).png)
+
+Al subir esta etiqueta, se lanzó el workflow ``Release`` configurado en el apartado anterior.
+
+![Ejecución del workflow Release](./capturas/JESUS-B5-B(2).png)
+
+Si miramos la imagen publicada, vemos que tiene adjuntadas las siguientes etiquetas a partir de las siguientes reglas:
+
+- ``1.0.0``: Creada a partir de la regla semántica ``type=semver,pattern={{version}}``. Indica la versión exacta de la imagen.
+- ``1.0``: Creada a partir de ``type=semver,pattern={{major}}.{{minor}}``, indica la última versión ``1.0.x`` publicada. Si se publicase una nueva imagen ``v1.0.1``, la etiqueta ``1.0`` se repuntaría a esa nueva imagen.
+- ``1``: Creada a partir de ``type=semver,pattern={{major}}``, indica la última versión ``1.x`` publicada. Misma idea que la anterior, solo que se reapuntaría cuando el segundo dígito cambia (por ejemplo, ``v1.1.0``).
+- ``sha-f9cc8a6``: Creada a partir de  `type=sha,prefix=sha-`, permite tener una trazabilidad desde la imagen hasta el commit exacto.
+
+![Tags de la imagen](./capturas/JESUS-B5-B(3).png)
+
+Por último, se crea la Release a partir de esta imagen, describiendo los cambios realizados a partir de la opción ``Generate release notes``. El resultado se ve en el siguiente [enlace](https://github.com/I-FJ-I/grupo1-PC-2026/releases/tag/v1.0.0).
+
+![Release publicada](./capturas/JESUS-B5-B(4).png)
+
