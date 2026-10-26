@@ -1,0 +1,40 @@
+name: Pages
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read    # leer el código (checkout)
+  pages: write      # publicar en GitHub Pages
+  id-token: write   # el despliegue OIDC lo exige
+
+concurrency:
+  group: pages
+  cancel-in-progress: false   # no interrumpir un despliegue a medias
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20", cache: npm }
+      - run: npm ci
+      - name: Generar el sitio
+        run: node docs/generate.js
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

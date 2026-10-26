@@ -1,0 +1,13 @@
+{
+  "name": "grupo1-pc-2026-docs",
+  "private": true,
+  "description": "Generador del sitio de documentación publicado en GitHub Pages",
+  "type": "module",
+  "scripts": {
+    "docs:build": "node docs/generate.js"
+  },
+  "devDependencies": {
+    "marked": "^15.0.7",
+    "marked-gfm-heading-id": "^4.1.1"
+  }
+}
