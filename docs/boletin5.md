@@ -1,4 +1,4 @@
-# Boletín 5: Entrega Continua (CD)
+# Boletín 5
 
 ## Resumen de commits
 
@@ -6,6 +6,7 @@
 |---|--------------------|-------------|-------|--------|
 | 1 | `feat(release): añadido el pipeline de publicación` | Creación de `.github/workflows/release.yml` para automatizar el empaquetado y subida de la imagen a GitHub Packages usando `docker/metadata-action`. | Fran | 57aa9c086d45ef248909a10bc7eaa65d7d0fcbf4 |
 | 2 | `docs(boletin5): parte B documentada` | Documentación de la publicación de la versión `v1.0.0`: etiqueta anotada, tags generados por el workflow y Release en GitHub. | Jesús | fddef13f2a720342d44440b6f7c59205ef0157d8 |
+| 3 | `docs(boletin5): parte C documentada` | Documentación de la verificación de la imagen publicada: descarga desde GHCR, ejecución con PostgreSQL en una red Docker y comprobación del endpoint de salud. | Jesús | 6e83a3c4782aea7095e643424db86fb6340a9713 |
 
 ## Detalle por commit
 
@@ -21,6 +22,13 @@
 - **Qué se hizo:** Se documentó la publicación de la primera versión de la imagen. Se creó la etiqueta anotada `v1.0.0`, se comprobaron los tags generados por el workflow y se publicó la Release en GitHub a partir de esa etiqueta.
 - **Autor:** Jesús
 - **Relación con el boletín:** [Parte B (Publicar una versión de verdad)](#parte-b---publicar-una-versión-de-verdad).
+- **Uso de IA:** No.
+
+### 3. `docs(boletin5): parte C documentada`
+
+- **Qué se hizo:** Se documentó la verificación de la imagen publicada. Se descargó la versión `1.0.0` desde GHCR y se ejecutó junto a un contenedor de PostgreSQL en una red Docker propia, comprobando con el endpoint de salud que la aplicación se conecta a la base de datos.
+- **Autor:** Jesús
+- **Relación con el boletín:** [Parte C (Verificar la imagen publicada)](#parte-c---verificar-la-imagen-publicada).
 - **Uso de IA:** No.
 
 ## Descripción narrativa de lo hecho en la sesión y relación con los commits
@@ -116,3 +124,113 @@ Para verificar el funcionamiento, basta con ejecutar el comando ``curl http://lo
 ![Resultado del comando curl](./capturas/JESUS-B5-C(2).png)
 
 Una vez comprobado su funcionamiento, se limpia lo creado con ``docker rm -f db api && docker network rm tareas-net``.
+
+### Parte D - GitHub Pages de la documentación
+
+Hasta ahora la memoria de cada sesión se ha ido guardando en la carpeta `seguimiento/`. Para publicarla como una web navegable, se traslada a una carpeta `docs/` en la raíz del repositorio, que es la ubicación que usa el resto del apartado. Para ello se han movido los archivos mediante ``git mv``, para que git registre la operación como un renombrado y conserve el historial de cada fichero. El boletín 1 se incorpora directamente en `docs/`, ya que no formaba parte de la carpeta anterior.
+
+```cmd
+git mv seguimiento\boletin2.md docs\
+git mv seguimiento\boletin3.md docs\
+git mv seguimiento\boletin4.md docs\
+git mv seguimiento\boletin5.md docs\
+git mv seguimiento\capturas docs\capturas
+git mv seguimiento\B3 docs\B3
+```
+
+Junto con los boletines se traslada también su material de apoyo. Se ha optado por moverlas con ellos debido a que las rutas utilizadas a la hora de referenciar estos archivos son relativas. En el caso de que no se quiera mover, habría que cambiar todas las referencias a rutas absolutas.
+
+La estructura resultante de la carpeta es la siguiente, con un documento por cada sesión entregada hasta el momento:
+
+```text
+docs/
+├── boletin1.md
+├── boletin2.md
+├── boletin3.md
+├── boletin4.md
+├── boletin5.md
+├── B3/
+├── capturas/
+├── generate.js
+└── site/          # generado por el script, no se versiona
+```
+
+El script se escribe en Node y su funcionamiento es el siguiente:
+
+1. Lee todos los ficheros `.md` de `docs/` y los ordena por el número de sesión.
+2. Elimina el front-matter YAML con el que empiezan algunos documentos, para que no se muestre como texto.
+3. Convierte cada documento a HTML.
+4. Reescribe los enlaces a otros boletines escritos como `.md` para que apunten al `.html` correspondiente.
+5. Guarda cada página en `docs/site/`.
+6. Genera `docs/site/index.html` con la lista de todos los boletines.
+7. Copia a `docs/site/` las carpetas de recursos (`capturas/` y `B3/`), para que las rutas relativas de las imágenes y de los ficheros enlazados sigan siendo válidas.
+
+Este script depende de  `marked`, que convierte Markdown a HTML siguiendo GitHub Flavored Markdown, y de  `marked-gfm-heading-id`, que genera los identificadores de los encabezados con el mismo criterio que GitHub. Para ejecutarlo, primero se instalan las dependencias declaradas en `package.json` y después se lanza el script:
+
+```cmd
+npm ci
+node docs/generate.js
+```
+
+Una vez generado el sitio, se abre `docs/site/index.html` en el navegador para revisar el resultado. Se verifica que tanto el índice enlaza a los cinco boletines como el resto de referencias.
+
+![Índice renderizado en el navegador](capturas/JESUS-B5-D(1).png)
+
+![Boletin renderizado en el navegador](capturas/JESUS-B5-D(2).png)
+
+Para automatizar la generación y publicación del sitio se añade el workflow `.github/workflows/pages.yml`, que se ejecuta en cada push a `main`:
+
+```yaml
+name: Pages
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read    # leer el código (checkout)
+  pages: write      # publicar en GitHub Pages
+  id-token: write   # sin él, actions/deploy-pages falla
+
+concurrency:
+  group: pages
+  cancel-in-progress: false   # cada despliegue publica algo, así que no se interrumpe
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20", cache: npm }
+      - run: npm ci
+      - name: Generar el sitio
+        run: node docs/generate.js
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+El workflow se divide en dos jobs. El job `build` prepara el entorno, instala las dependencias con `npm ci`, ejecuta el script y sube `docs/site/` como artefacto mediante `actions/upload-pages-artifact`. El job `deploy` depende del anterior con `needs`, se ejecuta en el entorno `github-pages` y publica ese artefacto con `actions/deploy-pages`. Se asignan permisos ``contents: read`` para el checkout, ``pages: write`` para publicar e ``id-token: write`` porque el despliegue se autentica con un token OIDC que GitHub genera en cada ejecución.
+
+Para que GitHub Pages funcione, el repositorio debe ser público. Una vez cumplido ese requisito, en **Settings → Pages** se cambia la opción **Source** a **GitHub Actions**, ya que el sitio no se publica desde una rama sino desde el artefacto que genera el workflow.
+
+Además, se añade `docs/site/` al `.gitignore` para que el HTML generado no se suba al repositorio, y `node_modules/`, porque las dependencias se instalan con `npm ci` en el propio workflow y no se deben versionar.
+
+Tras fusionar los cambios en `main`, el workflow se ejecuta y publica el sitio. Se comprueba que la web carga en `https://i-fj-i.github.io/grupo1-PC-2026/`, que el índice enlaza a los cinco boletines, que las imágenes se muestran y que la navegación entre páginas funciona. Se verifica además que `docs/site/` no aparece en `git status`, al estar ignorado.
+
+![Ejecución del workflow Pages](capturas/JESUS-B5-D(3).png)
+
+![Sitio publicado en GitHub Pages](capturas/JESUS-B5-D(4).png)

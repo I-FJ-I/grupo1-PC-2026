@@ -240,7 +240,7 @@ Se realizan tres ciclos completos de Pull Request (PR) alternando los roles de d
 5. **Revisión de Código:** Jiahui solicita cambios porque faltan los tests de la paginación. Se añade el test correspondiente y se sube, descartando las aprobaciones previas.
 6. **Merge:** Con el PR aprobado se fusiona a `main` y se borra la rama.
 
-![captura del pull request de paginación](capturas/FJ-b2-D(1).png)
+![captura del pull request de paginación](capturas/JH-b2-D(1).png)
 
 ### Parte E — Provocar un conflicto en un PR
 

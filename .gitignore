@@ -11,3 +11,7 @@ target/
 # Output directory
 bin/
 target/
+
+# Documentación generada y dependencias del generador
+docs/site/
+node_modules/
