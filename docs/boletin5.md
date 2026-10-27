@@ -7,6 +7,7 @@
 | 1 | `feat(release): añadido el pipeline de publicación` | Creación de `.github/workflows/release.yml` para automatizar el empaquetado y subida de la imagen a GitHub Packages usando `docker/metadata-action`. | Fran | 57aa9c086d45ef248909a10bc7eaa65d7d0fcbf4 |
 | 2 | `docs(boletin5): parte B documentada` | Documentación de la publicación de la versión `v1.0.0`: etiqueta anotada, tags generados por el workflow y Release en GitHub. | Jesús | fddef13f2a720342d44440b6f7c59205ef0157d8 |
 | 3 | `docs(boletin5): parte C documentada` | Documentación de la verificación de la imagen publicada: descarga desde GHCR, ejecución con PostgreSQL en una red Docker y comprobación del endpoint de salud. | Jesús | 6e83a3c4782aea7095e643424db86fb6340a9713 |
+| 4 | `feat(docs): creación de GitHub Pages de la documentación` | Traslado de la memoria a `docs/`, script generador del sitio, workflow de publicación en GitHub Pages y configuración de `.gitignore`. | Jesús | b0c5f7077a80a7c24a2959f561c96302378b9f82 |
 
 ## Detalle por commit
 
@@ -30,6 +31,13 @@
 - **Autor:** Jesús
 - **Relación con el boletín:** [Parte C (Verificar la imagen publicada)](#parte-c---verificar-la-imagen-publicada).
 - **Uso de IA:** No.
+
+### 4. `feat(docs): creación de GitHub Pages de la documentación`
+
+- **Qué se hizo:** Se trasladó la memoria de las sesiones de `seguimiento/` a `docs/` y se añadió el generador que convierte los documentos a HTML junto con un índice. Se implementó además el workflow que publica el sitio en GitHub Pages en cada push a `main` y se ignoró la carpeta generada.
+- **Autor:** Jesús
+- **Relación con el boletín:** [Parte D (GitHub Pages de la documentación)](#parte-d---github-pages-de-la-documentación).
+- **Uso de IA:** Generación de los scripts con OpenCode (DeepSeek V4.1 Flash).
 
 ## Descripción narrativa de lo hecho en la sesión y relación con los commits
 
@@ -234,3 +242,4 @@ Tras fusionar los cambios en `main`, el workflow se ejecuta y publica el sitio. 
 ![Ejecución del workflow Pages](capturas/JESUS-B5-D(3).png)
 
 ![Sitio publicado en GitHub Pages](capturas/JESUS-B5-D(4).png)
+
