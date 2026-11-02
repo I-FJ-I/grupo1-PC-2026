@@ -42,7 +42,7 @@
   vars:
     version_app: "1.0.0"                                   # se sobreescribe desde el CI
     imagen: "ghcr.io/i-fj-i/grupo1-pc-2026:{{ version_app }}"
-    host_bd: "{{ groups['db'][0] }}"                        # primer host del grupo db
+    host_bd: "{{ hostvars[groups['db'][0]]['ansible_host'] }}"                      # primer host del grupo db
 
   tasks:
     - name: Login en GHCR
