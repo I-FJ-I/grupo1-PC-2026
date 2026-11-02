@@ -11,7 +11,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>task-api</artifactId>
-    <version>1.1.0</version>
+    <version>1.3.0</version>
     <name>task-api</name>
     <description>API REST de Gestión de Tareas</description>
 
