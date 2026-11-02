@@ -15,3 +15,6 @@ target/
 # Documentación generada y dependencias del generador
 docs/site/
 node_modules/
+
+# Ficheros de Runners
+actions-runner/

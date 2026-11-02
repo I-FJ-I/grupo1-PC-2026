@@ -9,6 +9,8 @@
 | 3 | `feat(deploy): añadido el inventario por roles` | Creación de `deploy/inventory.ini`, que agrupa las máquinas en `app` y `db` y define cómo conectarse a ellas. | Jiahui | df21bbe8ecdf93bc5aa3c21ef52666a4a80af442 |
 | 4 | `feat(deploy): añadido el playbook de despliegue` | Creación de `deploy/deploy.yml`, con los plays que preparan Docker y despliegan la base de datos y la API. | Jiahui | bf7ca390f3e95e8aa27252bf254a52ce054ed245 |
 | 5 | `feat(deploy): añadidas las credenciales cifradas con Vault` | Creación de `deploy/group_vars/servidores/vault.yml`, cifrado con Ansible Vault, con las credenciales de GHCR y de la base de datos. | Jiahui | b7f311195b1661b6a3c608087ad1552b372dd935 |
+| 6 | `fix(deploy): cambios en los ficheros de ansible` | Correcciones menores en los ficheros para eliminar contenido subido erroneamente. | Fran | `2e0a9e9` |
+| 7 | `feat(deploy): añadir endpoint para consultar la versión de la api` | Creación del endpoint `/api/version` inyectando automáticamente la versión desde el `pom.xml` de Maven para verificar despliegues precisos (`1.0.0` y `1.1.0`). | Fran | `3a50865`[cite: 10] |
 
 ## Detalle por commit
 
@@ -46,6 +48,20 @@
 - **Autor:** Jiahui
 - **Relación con el boletín:** [Parte E (Proteger las credenciales con Ansible Vault)](#parte-e---proteger-las-credenciales-con-ansible-vault).
 - **Uso de IA:** N/A.
+
+### 6. `fix(deploy): cambios en los ficheros de ansible`
+
+- **Qué se hizo:** Se realizaron correcciones menores en las tareas de despliegue para eliminar contenido subido erroneamente.
+- **Autor:** Fran
+- **Relación con el boletín:** [Parte F (Verificación final de despliegues y control de versiones)](#parte-f---verificación-final-de-despliegues-y-control-de-versiones).
+- **Uso de IA:** No.
+
+### 7. `feat(deploy): añadir endpoint para consultar la versión de la api`
+
+- **Qué se hizo:** Se implementó el controlador REST `/api/version` combinado con el filtrado de recursos de Maven (`@project.version@`), permitiendo comprobar inequívocamente la versión activa de la aplicación tras cada despliegue.
+- **Autor:** Fran
+- **Relación con el boletín:** [Parte F (Verificación final de despliegues y control de versiones)](#parte-f---verificación-final-de-despliegues-y-control-de-versiones).
+- **Uso de IA:** No.
 
 ## Descripción narrativa de lo hecho en la sesión y relación con los commits
 
@@ -157,3 +173,87 @@ Las opciones de `vim` evitan que el contenido en claro quede en un fichero de in
 Por último, se comprueba con `cat` que el fichero versionado es ilegible. Su contenido empieza por la cabecera `$ANSIBLE_VAULT;1.1;AES256`, seguida únicamente del texto cifrado. Para modificarlo más adelante se utiliza `ansible-vault edit`.
 
 ![Fichero cifrado con Ansible Vault](./capturas/JH-b6-E(1).png)
+
+### Parte F - Verificación final de despliegues y control de versiones
+
+Para comprobar el correcto funcionamiento del despliegue y del control de versiones, en primer lugar se lanza el playbook indicando la versión `1.0.0` mediante la variable `version_app`:
+
+```bash
+ansible-playbook -i deploy/inventory.ini deploy/deploy.yml \
+  --ask-vault-pass --extra-vars "version_app=1.0.0"
+
+```
+
+El playbook completa su ejecución correctamente para la versión inicial.
+
+![Ejecución inicial](./capturas/FRAN-b6-F(1).png)
+
+Observamos como ambas réplicas comunican con la misma base de datos que, actualmente, está vacía.
+
+![Respuesta api](./capturas/FRAN-b6-F(2).png)
+
+Al ejecutar de nuevo el playbook podemos apreciar como ninguna de las máquinas ha cambiado.
+
+![Idempotencia](./capturas/FRAN-b6-F(3).png)
+
+Tras desarrollar un nuevo endpoint para la neva versión, configurar la inyección de la versión desde el `pom.xml` y generar la nueva etiqueta (`v1.1.0`), subimos la nueva versión.
+
+A continuación, se ejecuta de nuevo el playbook actualizando la variable a la nueva versión (`1.1.0`):
+
+```bash
+ansible-playbook -i deploy/inventory.ini deploy/deploy.yml \
+  --ask-vault-pass --extra-vars "version_app=1.1.0"
+
+```
+
+En la primera ejecución del playbook falla el *smoke test* pero las máquinas se modifican correctamente.
+
+![Smoke test fallido](./capturas/FRAN-b6-F(4).png)
+
+Tras una segunda ejecución del playbook observamos como el *smoke test* finaliza correctamente y nos confirma que la API de la versión 1.1.0 está sana y respondiendo.
+
+![Smoke test fallido](./capturas/FRAN-b6-F(5).png)
+
+Se consulta el nuevo endpoint (`/api/version`) directamente con `curl` a las direcciones IP de los contenedores `app1` y `app2`. En ambos casos, devuelven correctamente el JSON con la versión `1.1.0` activa, validando así que el despliegue se ha realizado con éxito y precisión.
+
+![Consulta de version 1](./capturas/FRAN-b6-F(6).png)
+
+Finalmente volvemos a ejecutar el playbook para volver a la versión 1.0.0 y volvemos a probar el endpoint implementado en la versión 1.1.0 para demostrar que no se encuentra disponible en la versión que estamos utilizando actualmente.
+
+![Rollback](./capturas/FRAN-b6-F(7).png)
+
+![Consulta de version 2](./capturas/FRAN-b6-F(8).png)
+
+### Parte G — Disparar el despliegue desde GitHub Actions (cierre CD)
+
+#### G.1 — Registrar tu ordenador como runner
+
+Para automatizar el despliegue de forma que cada publicación de una nueva versión dispare Ansible, se necesita un entorno de ejecución (*runner*) que tenga acceso por SSH a la flota de servidores destino. Al estar utilizando máquinas virtuales alojadas en el propio ordenador físico, se registra este mismo equipo como un runner autoalojado (*self-hosted runner*) en GitHub.
+
+Se accede a **Settings → Actions → Runners → New self-hosted runner** y se selecciona la arquitectura correspondiente (macOS ARM64 en mi caso). A continuación, se descargan y configuran los binarios del runner en una terminal:
+
+```bash
+mkdir actions-runner && cd actions-runner
+curl -o actions-runner-osx-arm64-2.338.2.tar.gz -L [https://github.com/actions/runner/releases/download/](https://github.com/actions/runner/releases/download/)...
+tar xzf ./actions-runner-osx-arm64-2.338.2.tar.gz
+./config.sh --url [https://github.com/I-FJ-I/grupo1-PC-2026](https://github.com/I-FJ-I/grupo1-PC-2026) --token <TOKEN>
+
+```
+
+Se aceptan los valores por defecto durante la configuración y se arranca el proceso con `./run.sh`, dejándolo a la escucha de nuevos trabajos.
+
+![Configuración del runner](./capturas/FRAN-b6-G(1).png)
+
+Tras arrancar el script, se verifica en la interfaz web de GitHub que el runner `MacBook-Pro-de-Fran` aparece correctamente registrado, con las etiquetas `self-hosted`, `macOS` y `ARM64`, y en estado **Idle** (ocioso), listo para recibir peticiones.
+
+![Estado del runner](./capturas/FRAN-b6-G(2).png)
+
+#### G.2 — Entorno protegido y secreto del Vault
+
+Para evitar que los despliegues a los servidores se ejecuten de forma automática sin supervisión, se configura un entorno protegido que requiera aprobación manual.
+
+En **Settings → Environments → New environment**, se crea un entorno llamado `produccion`. Dentro de su configuración, se activa la regla **Required reviewers** y se añaden los usuarios correspondientes para que autoricen el flujo de trabajo antes de que pase al runner.
+
+Finalmente, en la sección **Environment secrets** de esa misma pantalla, se añade un nuevo secreto denominado `VAULT_PASS`. Este secreto contiene la contraseña maestra necesaria para que el *playbook* de Ansible pueda descifrar el archivo `vault.yml` durante el despliegue automático, garantizando así la seguridad de las credenciales inyectadas sin exponerlas en el código.
+
+![Nuevo entrono](./capturas/FRAN-b6-G(3).png)
