@@ -1,4 +1,4 @@
-# Boletín 1
+# Boletín 1 - Jiahui
 
 ## Resumen de commits
 
