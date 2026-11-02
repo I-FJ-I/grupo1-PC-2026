@@ -10,7 +10,9 @@
 | 4 | `feat(deploy): añadido el playbook de despliegue` | Creación de `deploy/deploy.yml`, con los plays que preparan Docker y despliegan la base de datos y la API. | Jiahui | bf7ca390f3e95e8aa27252bf254a52ce054ed245 |
 | 5 | `feat(deploy): añadidas las credenciales cifradas con Vault` | Creación de `deploy/group_vars/servidores/vault.yml`, cifrado con Ansible Vault, con las credenciales de GHCR y de la base de datos. | Jiahui | b7f311195b1661b6a3c608087ad1552b372dd935 |
 | 6 | `fix(deploy): cambios en los ficheros de ansible` | Correcciones menores en los ficheros para eliminar contenido subido erroneamente. | Fran | `2e0a9e9` |
-| 7 | `feat(deploy): añadir endpoint para consultar la versión de la api` | Creación del endpoint `/api/version` inyectando automáticamente la versión desde el `pom.xml` de Maven para verificar despliegues precisos (`1.0.0` y `1.1.0`). | Fran | `3a50865`[cite: 10] |
+| 7 | `feat(deploy): añadir endpoint para consultar la versión de la api` | Creación del endpoint `/api/version` inyectando automáticamente la versión desde el `pom.xml` de Maven para verificar despliegues precisos (`1.0.0` y `1.1.0`). | Fran | `3a50865` |
+| 8 | `feat(deploy): nuevo job deploy en release.yml` | Ampliación de `.github/workflows/release.yml`: el job `publish` expone la versión publicada y se añade el job `deploy`, que lanza el playbook desde el runner `self-hosted`. | Jesús | `8af1b38dcc86b05f47c4de34ffd110974d87d7be` |
+| 9 | `fix(pom): actualización a la nueva versión` | Actualización de la versión del `pom.xml` a `1.3.0` para que `/api/version` coincida con la del tag desplegado. | Jesús | `d20978c9ceb6915b477a242e64cba8b902cb0893` |
 
 ## Detalle por commit
 
@@ -62,6 +64,20 @@
 - **Autor:** Fran
 - **Relación con el boletín:** [Parte F (Verificación final de despliegues y control de versiones)](#parte-f---verificación-final-de-despliegues-y-control-de-versiones).
 - **Uso de IA:** No.
+
+### 8. `feat(deploy): nuevo job deploy en release.yml`
+
+- **Qué se hizo:** Se añadió a `publish` la salida `version` y se creó el job `deploy`, que solo se ejecuta si la imagen se ha publicado correctamente y únicamente con tags `vX.Y.Z`. Se ejecuta en el runner ``self-hosted``, con aprobación manual del entorno `produccion`, y lanzando `ansible-playbook` con la versión publicada.
+- **Autor:** Jesús
+- **Relación con el boletín:** [Parte G.3 (Ampliar el release.yml)](#g3---ampliar-el-releaseyml).
+- **Uso de IA:** N/A.
+
+### 9. `fix(pom): actualización a la nueva versión`
+
+- **Qué se hizo:** Se actualizó la versión del `pom.xml` a `1.3.0`, ya que `/api/version` lee la versión de este fichero y devolvía `1.1.0` tras desplegar la imagen `1.2.0`. Con ello, la versión que informa la aplicación coincide con la del tag publicado.
+- **Autor:** Jesús
+- **Relación con el boletín:** [Parte G.4 (Pruebas de extremo a extremo)](#g4---pruebas-de-extremo-a-extremo).
+- **Uso de IA:** N/A.
 
 ## Descripción narrativa de lo hecho en la sesión y relación con los commits
 
@@ -196,7 +212,7 @@ Al ejecutar de nuevo el playbook podemos apreciar como ninguna de las máquinas 
 
 ![Idempotencia](./capturas/FRAN-b6-F(3).png)
 
-Tras desarrollar un nuevo endpoint para la neva versión, configurar la inyección de la versión desde el `pom.xml` y generar la nueva etiqueta (`v1.1.0`), subimos la nueva versión.
+Tras desarrollar un nuevo endpoint para la nueva versión, configurar la inyección de la versión desde el `pom.xml` y generar la nueva etiqueta (`v1.1.0`), subimos la nueva versión.
 
 A continuación, se ejecuta de nuevo el playbook actualizando la variable a la nueva versión (`1.1.0`):
 
@@ -234,9 +250,9 @@ Se accede a **Settings → Actions → Runners → New self-hosted runner** y se
 
 ```bash
 mkdir actions-runner && cd actions-runner
-curl -o actions-runner-osx-arm64-2.338.2.tar.gz -L [https://github.com/actions/runner/releases/download/](https://github.com/actions/runner/releases/download/)...
+curl -o actions-runner-osx-arm64-2.338.2.tar.gz -L https://github.com/actions/runner/releases/download/...
 tar xzf ./actions-runner-osx-arm64-2.338.2.tar.gz
-./config.sh --url [https://github.com/I-FJ-I/grupo1-PC-2026](https://github.com/I-FJ-I/grupo1-PC-2026) --token <TOKEN>
+./config.sh --url https://github.com/I-FJ-I/grupo1-PC-2026 --token <TOKEN>
 
 ```
 
@@ -256,4 +272,160 @@ En **Settings → Environments → New environment**, se crea un entorno llamado
 
 Finalmente, en la sección **Environment secrets** de esa misma pantalla, se añade un nuevo secreto denominado `VAULT_PASS`. Este secreto contiene la contraseña maestra necesaria para que el *playbook* de Ansible pueda descifrar el archivo `vault.yml` durante el despliegue automático, garantizando así la seguridad de las credenciales inyectadas sin exponerlas en el código.
 
-![Nuevo entrono](./capturas/FRAN-b6-G(3).png)
+![Nuevo entorno](./capturas/FRAN-b6-G(3).png)
+
+
+#### G.3 - Ampliar el ``release.yml``
+
+Una vez se ha preparado el entorno de ejecución y se ha protegido mediante aprobación manual, se amplía el workflow ``release.yml`` para que, cada vez que se publique una nueva versión, esta se despliegue automáticamente en la flota con Ansible.
+
+Para ello, se añade el nuevo job ``deploy`` al workflow, justo después de ``publish``:
+
+```yaml
+name: Release
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ "v*.*.*" ]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      version: ${{ steps.meta.outputs.version }}   # NUEVO: 1.0.0 cuando el tag es v1.0.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login en GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Metadatos (tags)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=sha,prefix=sha-
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Construir y publicar
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  # NUEVO: todo lo que sigue es lo que añades en esta parte
+  deploy:
+    needs: publish                                  # solo si la imagen se publicó bien
+    # solo al publicar una versión (tag vX.Y.Z), no en cada push a main
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: self-hosted                            # tu ordenador
+    environment: produccion                         # se detiene aquí hasta que un reviewer lo apruebe
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar la collection de Ansible
+        run: ansible-galaxy collection install -r deploy/requirements.yml
+
+      - name: Desplegar con Ansible
+        env:
+          VAULT_PASS: ${{ secrets.VAULT_PASS }}
+          VERSION: ${{ needs.publish.outputs.version }}
+        run: |
+          VAULT_FILE="$(mktemp)"
+          trap 'rm -f "$VAULT_FILE"' EXIT
+          printf '%s' "$VAULT_PASS" > "$VAULT_FILE"
+          ansible-playbook -i deploy/inventory.ini deploy/deploy.yml \
+            --vault-password-file "$VAULT_FILE" \
+            --extra-vars "version_app=$VERSION"
+
+```
+
+Este nuevo job se ejecuta únicamente si la imagen se ha publicado correctamente (``needs: publish``). En el caso de que se haya publicado con éxito, solo se lanza el despliegue cuando se publica una nueva versión con el formato ``vX.Y.Z``, y no en cada push a la rama ``main``, como ocurre en el job de ``publish`` o en el workflow ``pages.yml``. Para que este job se ejecute en el equipo registrado como *self-hosted runner* se utiliza ``runs-on: self-hosted``. De esta forma, ``deploy`` puede conectarse por SSH a ``app1`` y ``app2``.
+
+Para que este job se ejecute en el entorno protegido configurado en el apartado anterior, se especifica ``environment: produccion``. De esta forma, se tiene acceso al secreto ``VAULT_PASS`` y el job queda pausado hasta que sea aprobado manualmente. Para mantener una trazabilidad desde la aplicación en ejecución hasta el tag de Git que la produjo, la versión desplegada es la misma que el tag de la imagen (``version_app=$VERSION``). Para que ``deploy`` reciba la nueva versión publicada, es necesario añadir en el job ``publish`` la sección ``outputs``.
+
+Por último, el job se divide en los siguientes pasos:
+
+1. Instala la collection de Ansible.
+2. Crea un fichero temporal y guarda su ruta en una variable.
+3. Programa con ``trap`` el borrado del fichero temporal cuando el script falle/finalice.
+4. Guarda en el fichero temporal la contraseña de Vault. 
+5. Ejecuta el playbook sobre los servidores de la flota especificando el fichero que contiene la contraseña Vault e indicando a través de variables de entorno la versión a desplegar.
+
+#### G.4 - Pruebas de extremo a extremo
+
+Antes de empezar, es necesario tener lanzada la flota completa y el runner. Una vez ambos estén en ejecución, se publica una versión nueva ``v1.2.0``.
+
+```bash
+git tag -a v1.2.0 -m "Adición de despliegue automático de nuevas versiones"
+git push origin v1.2.0
+```
+
+![Nueva versión publicada](./capturas/JESUS-B6-G(4).png)
+
+Al publicarse esta nueva versión, se lanza automáticamente el job ``deploy``. En la pestaña de despliegues del entorno ``produccion`` se observa el historial de la versión ``v1.2.0``. El despliegue quedó asociado al merge realizado para subir el ``release.yml`` actualizado. 
+
+![Release lanzado al publicarse la nueva versión](./capturas/JESUS-B6-G(5).png)
+
+
+Los dos primeros intentos fallaron debido a un problema en la flota (``db1`` no se lanzaba con éxito). Tras corregir el error, el tercer intento se completó correctamente. El tercer intento, aunque finalizó con éxito, no solicitó aprobación manual del job ``deploy``. Esto es, debido a que no se configuró la opción ``Required reviewers`` en el momento de la ejecución. Una vez se ha configurado, se lanzó de nuevo el workflow ``release`` completo, requiriendo ahora sí de una aprobación manual.
+
+![Deploy pendiente de confirmar](./capturas/JESUS-B6-G(6).png)
+
+![Aprobación manual del deploy](./capturas/JESUS-B6-G(7).png)
+
+Una vez se ha aprobado, el job ``deploy`` finaliza con éxito.
+
+![Aprobación manual del deploy](./capturas/JESUS-B6-G(8).png)
+
+Para verificar que la nueva versión está funcionando, se abre una nueva terminal y se realizan peticiones a las dos máquinas destino ``app1`` y ``app2``. Se consultan los nuevos endpoints creados en el apartado F:
+
+![Curl con version anticuada](./capturas/JESUS-B6-G(9).png)
+
+Al comprobar el despliegue de la versión ``v1.2.0``, el endpoint ``/api/version`` devolvió ``1.1.0``. Esto se debe a que el endpoint no lee la versión del tag de Git ni de la imagen, sino del ``pom.xml``, que Maven inyecta en ``application.properties`` al compilar mediante ``@project.version@``. Como el ``pom.xml`` no se actualizó antes de crear el tag, la imagen se publicó etiquetada como ``1.2.0``, pero la aplicación que contiene seguía declarando la versión 1.1.0.
+
+Para corregirlo se actualiza la versión del ``pom.xml`` a ``1.3.0`` y se publica una nueva versión con el tag ``v1.3.0``, de modo que la versión de la imagen y la que informa la aplicación coincidan.
+
+![PR con el fix del pom.xml](./capturas/JESUS-B6-G(10).png)
+
+![Release ejecutado con éxito](./capturas/JESUS-B6-G(11).png)
+
+Una vez se ha publicado la nueva versión con éxito y se ha desplegado en la flota completa, se verifica si devuelve la versión correcta.
+
+![Curl con version correcta](./capturas/JESUS-B6-G(12).png)
+
+Ahora ``/api/version`` devuelve ``1.3.0`` en ambas réplicas, la misma versión que el tag publicado. Esto confirma que el flujo completo funciona de extremo a extremo, desde el ``git push`` del tag hasta la aplicación corriendo en ``app1`` y ``app2``.
+
+Para terminar, se muestra la arquitectura completa que se ha montado en este boletín. En el diagrama se indica dónde se ejecuta cada pieza y cómo se conectan entre sí. Además, cada flecha lleva un número que marca el orden de los pasos desde que se publica el tag ``vX.Y.Z`` hasta que la aplicación queda corriendo en las dos réplicas, y el protocolo que utiliza.
+
+![Arquitectura completa del despliegue](./capturas/JESUS-B6-G(13).png)
+
+Los pasos que se numeran en el diagrama son los siguientes:
+
+1. Se publica el tag ``vX.Y.Z`` en el repositorio con ``git push`` (HTTPS). La conexión la inicia el desarrollador.
+2. GitHub detecta el tag y lanza el workflow ``release``.
+3. El job ``publish``, que se ejecuta en un runner de GitHub, construye la imagen y la sube a GHCR (HTTPS) con la versión del tag.
+4. El job ``deploy`` queda pausado en el entorno ``produccion`` hasta que se aprueba manualmente.
+5. El runner autoalojado consulta GitHub (HTTPS) y es él quien inicia la conexión, por lo que no es necesario abrir ningún puerto. Una vez aprobado el despliegue, recibe el trabajo junto con el secreto ``VAULT_PASS``.
+6. El runner ejecuta Ansible, que actúa como controlador desde el propio ordenador.
+7. Ansible inicia una conexión SSH con ``app1``, ``app2`` y ``db1`` a través de los puertos ``2223``, ``2224`` y ``2225``. Estos tres contenedores los ejecuta el Docker del anfitrión.
+8. Dentro de ``app1`` y ``app2``, su Docker interno descarga la imagen de GHCR (HTTPS) y arranca la API.
+9. La API de cada réplica se conecta con PostgreSQL, que corre en ``db1`` (TCP).
+10. Por último, se comprueba el despliegue con ``curl`` (HTTP) a los puertos ``8081`` y ``8082`` del anfitrión, que redirigen al puerto ``8080`` de cada API.
